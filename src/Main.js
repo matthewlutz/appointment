@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './Main.css';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import LoginPage from './LoginPage';
 
@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <div className="header">
-        <h1>Welcome to the Appointment Booking System</h1>
+        <h1>Appointment Booking System</h1>
       </div>
 
       <div className="nav-bar">

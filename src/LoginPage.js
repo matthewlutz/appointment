@@ -12,33 +12,36 @@ function LoginPage() {
     };
 
     return (
-        <div>
-            <h2>Login Page</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>
-                        Username:
-                        <input 
-                            type="text" 
-                            value={username} 
-                            onChange={e => setUsername(e.target.value)} 
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Password:
-                        <input 
-                            type="password" 
-                            value={password} 
-                            onChange={e => setPassword(e.target.value)} 
-                        />
-                    </label>
-                </div>
-                <div>
-                    <button type="submit">Login</button>
-                </div>
-            </form>
+        <div className = "login-container">
+            <div className = "login-card">
+                <h2>Login</h2>
+                <form className="login-form" onSubmit = {handleSubmit}>
+                    <div>
+                        <label>
+                            Username:
+                            <input
+                                type = "text"
+                                value = {username}
+                                onChange={(e) => setUsername(e.target.value)} 
+                                className="login-input"
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Password:
+                            <input
+                                value={username}
+                                onChange={(e)=> setPassword(e.target.value)}
+                                className="login-input"
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <button type="submit" className = "login-button">Login</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

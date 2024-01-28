@@ -31,7 +31,8 @@ function LoginPage() {
                         <label>
                             Password:
                             <input
-                                value={username}
+                                type="password"
+                                value={password}
                                 onChange={(e)=> setPassword(e.target.value)}
                                 className="login-input"
                             />

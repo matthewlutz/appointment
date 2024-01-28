@@ -1,3 +1,4 @@
+import React from 'react';
 import logo from './logo.svg';
 import './Main.css';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
@@ -14,7 +15,7 @@ function App() {
         <a href="#medical">Medical</a>
         <a href="#beauty">Beauty</a>
         <a href="#fitness">Fitness</a>
-        <a href="#login" className="login">Login</a>
+        <Link to="/login" className="login">Login</Link>
       </div>
 
       <div className="container">

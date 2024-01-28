@@ -1,12 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './Main.css';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch, BrowserRouter } from 'react-router-dom';
 import LoginPage from './LoginPage';
 
 function App() {   
   return (
-    <Router>
+    <BrowserRouter>
             <div>
                 <div className="header">
                     <h1>Appointment Booking System</h1>
@@ -20,7 +20,7 @@ function App() {
                 </div>
 
                 <Switch>
-                    <Route path="/login" component={LoginPage} />
+                    <Route path="/login" component={() => <div>Login Page</div>}/>
                     {/*define more routes as needed */}
                 </Switch>
 
@@ -41,7 +41,7 @@ function App() {
                     </div>
                 </div>
             </div>
-        </Router>
+        </BrowserRouter>
   );
 }
 

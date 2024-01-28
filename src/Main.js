@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './Main.css';
-import { BrowserRouter as Router, Route, Link, Switch, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Route, Link, Switch, BrowserRouter } from 'react-router-dom';
 import LoginPage from './LoginPage';
 
 function App() {   
@@ -20,7 +20,7 @@ function App() {
                 </div>
 
                 <Switch>
-                    <Route path="/login" component={() => <div>Login Page</div>}/>
+                    <Route path="/login" component={LoginPage}/>
                     {/*define more routes as needed */}
                 </Switch>
 
@@ -44,5 +44,6 @@ function App() {
         </BrowserRouter>
   );
 }
+
 
 export default App;

@@ -9,6 +9,7 @@ body {
   color: white;
   padding: 10px 0;
   text-align: center;
+  height: 100px; 
 }
 .nav-bar {
   background-color: #333;

@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './Main.css';
 import {Route, Link, BrowserRouter, Routes } from 'react-router-dom';
 import LoginPage from './LoginPage';
+import HomePage from './HomePage';
 
 function App() {   
   return (
@@ -20,26 +21,10 @@ function App() {
                 </div>
 
                 <Routes>
-                    <Route path="/login" component={LoginPage}/>
-                    {/*define more routes as needed */}
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    {/* other routes */}
                 </Routes>
-
-                <div className="container">
-                    <div id="medical" className="category">
-                        <h2>Medical Appointments</h2>
-                        <p>Book medical appointments here.</p>
-                    </div>
-
-                    <div id="beauty" className="category">
-                        <h2>Beauty Services</h2>
-                        <p>Book beauty services here.</p>
-                    </div>
-
-                    <div id="fitness" className="category">
-                        <h2>Fitness Sessions</h2>
-                        <p>Book fitness sessions here.</p>
-                    </div>
-                </div>
             </div>
         </BrowserRouter>
   );

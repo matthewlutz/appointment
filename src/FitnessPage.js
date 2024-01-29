@@ -4,10 +4,14 @@ import CalendarComponent from './CalendarComponent';
 
 function FitnessPage(){
 
+    const titleStyle = {
+        textAlign: 'center',
+        fontFamily: 'Arial, sans-serif'
+    }
 
     return(
         <div className = "container">
-            <h1> View Open Dates for Fitness Appointment</h1>
+            <h1 style={titleStyle}> View Open Dates for Fitness Appointment</h1>
             <CalendarComponent />
         </div>
 

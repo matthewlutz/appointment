@@ -14,7 +14,7 @@ function App() {
     <BrowserRouter>
             <div>
                 <div className="header">
-                    <h1>Appointment Booking System</h1>
+                    <Link to='/' className="header-title">Appointment Booking System</Link>
                 </div>
 
                 <div className="nav-bar">

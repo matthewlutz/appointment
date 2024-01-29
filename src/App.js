@@ -30,8 +30,6 @@ function App() {
                     <Route path="/fitness" element={<FitnessPage/>} />
                     <Route path="/medical" element={<MedicalPage/>} />
                     <Route path="/beauty" element={<BeautyPage/>} />
-                    
-                    {/* other routes */}
                 </Routes>
             </div>
         </BrowserRouter>

@@ -4,7 +4,7 @@ import './Main.css';
 import { BrowserRouter as Route, Link, Switch, BrowserRouter } from 'react-router-dom';
 import LoginPage from './LoginPage';
 
-function App() {   
+function Main() {   
   return (
     <BrowserRouter>
             <div>
@@ -21,7 +21,7 @@ function App() {
 
                 <Switch>
                     <Route path="/login" component={LoginPage}/>
-                    {/*define more routes as needed */}
+                   
                 </Switch>
 
                 <div className="container">
@@ -32,7 +32,7 @@ function App() {
 
                     <div id="beauty" className="category">
                         <h2>Beauty Services</h2>
-                        <p>Book beauty services here.</p>
+                        <p>Book beauty serrrvices here.</p>
                     </div>
 
                     <div id="fitness" className="category">
@@ -46,4 +46,4 @@ function App() {
 }
 
 
-export default App;
+export default Main;

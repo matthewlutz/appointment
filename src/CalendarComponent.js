@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
 import DayModal from './DayModal';
 import './Cal.css';
 
@@ -27,10 +28,19 @@ function CalenderComponent(){
         <div>
             <FullCalendar 
                 className="custom-calendar"
-                plugins = {[dayGridPlugin]}
-                initialView='dayGridMonth'
+                plugins = {[dayGridPlugin, timeGridPlugin]}
+                initialView='timeGridWeek'
                 dateClick = {handleDateClick}
+                headerToolbar={{
+                    center: 'dayGridMonth, timeGridWeek'
+                }}
+                buttonText={{
+                    dayGridMonth: 'Monthly View',
+                    timeGridWeek: 'Weekly View'
+                }}
             />
+
+
             <DayModal isOpen={modalOpen} onClose={closeModal}>
                 <h2>Schedule for {selectedDate}</h2>
             </DayModal>

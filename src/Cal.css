@@ -1,3 +1,15 @@
 .custom-calendar, .fc-daygrid-day {
     cursor: pointer;
 }
+.custom-calendar, .fc-dayGridMonth-button {
+    margin-right: 0 !important;
+    padding-right: 0 !important; 
+}
+
+.custom-calendar, .fc-dayGridMonth-button::before {
+    content: none !important;
+}
+
+.custom-calendar, .fc-dayGridMonth-button::after {
+    content: none !important;
+}

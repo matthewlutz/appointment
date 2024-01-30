@@ -28,16 +28,43 @@ function CalenderComponent(){
         <div>
             <FullCalendar 
                 className="custom-calendar"
-                plugins = {[dayGridPlugin, timeGridPlugin]}
+                plugins={[dayGridPlugin, timeGridPlugin]}
                 initialView='timeGridWeek'
-                dateClick = {handleDateClick}
+                slotMinTime="09:00:00"
+                slotMaxTime="17:00:00"
+                allDaySlot={false}
+                dateClick={handleDateClick}
+                height="auto"
                 headerToolbar={{
-                    center: 'dayGridMonth, timeGridWeek'
+                  center: 'dayGridMonth,timeGridWeek'
                 }}
                 buttonText={{
-                    dayGridMonth: 'Monthly View',
-                    timeGridWeek: 'Weekly View'
+                  dayGridMonth: 'Monthly View ',
+                  timeGridWeek: 'Weekly View'
                 }}
+                views={{
+                  dayGridMonth: {
+                    //month view
+                    titleFormat: { year: 'numeric', month: 'long' },
+                  },
+                  timeGridWeek: {
+                    // week view
+                    slotDuration: '00:30:00',
+                    slotLabelFormat: {
+                      hour: 'numeric',
+                      minute: '2-digit',
+                      omitZeroMinute: false,
+                      //meridiem: 'short'
+                    },
+                    businessHours: {
+                      // Define business hours for week view
+                      startTime: '07:00', 
+                      endTime: '19:00', 
+                    },
+                    
+                  }
+                }}
+
             />
 
 

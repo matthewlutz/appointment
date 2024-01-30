@@ -4,12 +4,17 @@ import './LoginPage.css';
 function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [role, setRole] = useState('user');
 
     const handleSubmit = (event) => {
         event.preventDefault();
         // Login logic
         console.log('Username:', username, 'Password:', password);
+        if (role === 'user'){
+            //user logic
+        }else if (role === 'service-provider'){
         // After login logic 
+        }
     };
 
     return (
@@ -17,6 +22,15 @@ function LoginPage() {
             <div className = "login-card">
                 <h2>Login</h2>
                 <form className="login-form" onSubmit = {handleSubmit}>
+                    <div>
+                        <label>
+                            Role:
+                            <select value={role} onChange={(e) => setRole(e.target.value)} className="login-input">
+                                <option value="user">User</option>
+                                <option value="serviceProvider">Service Provider</option>
+                            </select>
+                        </label>
+                    </div>
                     <div>
                         <label>
                             Username: 

@@ -1,5 +1,6 @@
 .custom-calendar, .fc-daygrid-day {
     cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white, adjust as needed */
 }
 .custom-calendar, .fc-dayGridMonth-button {
     margin-right: 0 !important;
@@ -13,3 +14,16 @@
 .custom-calendar, .fc-dayGridMonth-button::after {
     content: none !important;
 }
+
+.custom-calendar, .fc-time-grid .fc-slats td {
+    display: none;
+}
+  
+.custom-calendar, .fc-time-grid .fc-slats td[data-time='17:00:00'] {
+    display: table-cell;
+}
+
+.custom-calendar, .fc-day-sun, .fc-day-sat {
+   background-color: rgb(255, 255, 255);
+}
+

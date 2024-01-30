@@ -19,9 +19,10 @@ function App() {
 
                 <div className="nav-bar">
                     <Link to="/medical" className="medical" >Medical</Link>
-                    <Link to="/beauty" classsName="beauty" >Beauty</Link>
+                    <Link to="/beauty" className="beauty" >Beauty</Link>
                     <Link to="/fitness" className="fitness" >Fitness</Link>
-                    <Link to="/login" className="login" >Login</Link>
+                    <Link to="/login" className="login">Login as Service Provider</Link>
+                    <Link to="/login" className="login" >Login as User</Link>
                 </div>
 
                 <Routes>
@@ -30,6 +31,7 @@ function App() {
                     <Route path="/fitness" element={<FitnessPage/>} />
                     <Route path="/medical" element={<MedicalPage/>} />
                     <Route path="/beauty" element={<BeautyPage/>} />
+                    
                 </Routes>
             </div>
         </BrowserRouter>

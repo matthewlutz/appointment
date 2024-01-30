@@ -1,5 +1,5 @@
 body {
-  font-family: 'Roboto', Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
@@ -19,25 +19,26 @@ body {
   font-size: 24px; 
 }
 .nav-bar {
-  background-color: #333;
+  background: #333;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 .nav-bar a {
   float: left;
-  display: block;
+  display: block; /* or 'inline-block' */
   color: white;
   text-align: center;
   padding: 14px 20px;
   text-decoration: none;
+  background-color: #333; /* Normal state background color */
   transition: background-color 0.3s, color 0.3s;
 }
 .nav-bar .login {
   float: right;
 }
 .nav-bar a:hover {
-  background-color: #3aa0b7;
-  color: rgb(255, 255, 255);
+  background-color: white;
+  color: rgb(0, 0, 0);
 }
 .container {
   padding: 20px;

@@ -2,26 +2,31 @@ import React, { useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import DayModal from './DayModal';
+import './Cal.css';
 
 
-function CalanderComponent(){
+function CalenderComponent(){
     //Use reacts hooks to manage states/events
     const [modalOpen, setModalOpen] = useState(false); //Modal closed by default
     const [selectedDate, setSelectedDate] = useState(null); //No date selected by default
 
     const handleDateClick = (arg) => {
+        console.log("Clicked date:", arg.dateStr); 
         setSelectedDate(arg.dateStr);
         setModalOpen(true);
     }
 
+    
     //Function to close the modal
     const closeModal= () => {
         setModalOpen(false);
     }
+    
 
     return(
         <div>
-            <FullCalendar
+            <FullCalendar 
+                className="custom-calendar"
                 plugins = {[dayGridPlugin]}
                 initialView='dayGridMonth'
                 dateClick = {handleDateClick}
@@ -33,4 +38,4 @@ function CalanderComponent(){
     );
 }
 
-export default CalanderComponent;
+export default CalenderComponent;

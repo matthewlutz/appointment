@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom';
 import './LoginPage.css';
 
 function LoginPage() {
@@ -57,6 +58,9 @@ function LoginPage() {
                         <button type="submit" className = "login-button">Login</button>
                     </div>
                 </form>
+                <div className="register-link">
+                <Link to="/register">Don't have an account? Register</Link>
+            </div>
             </div>
         </div>
     );

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+.main-page {
+    text-align: center; 
+    font-family: 'Arial', sans-serif; 
+    padding: 20px;
+}
+
+.main-page {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+}
+
+.left-content, .right-content {
+    width: 45%; 
+    text-align: justify; 
+}
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}

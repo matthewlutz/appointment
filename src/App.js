@@ -7,6 +7,7 @@ import HomePage from './HomePage';
 import FitnessPage from './FitnessPage';
 import MedicalPage from './MedicalPage';
 import BeautyPage from './BeautyPage';
+import RegistrationPage from './RegistrationPage';
 
 
 function App() {   
@@ -21,16 +22,18 @@ function App() {
                     <Link to="/medical" className="medical" >Medical</Link>
                     <Link to="/beauty" className="beauty" >Beauty</Link>
                     <Link to="/fitness" className="fitness" >Fitness</Link>
-                    <Link to="/login" className="login">Login as Service Provider</Link>
-                    <Link to="/login" className="login" >Login as User</Link>
+                    <Link to="/serviceLogin" className="login">Login as Service Provider</Link>
+                    <Link to="/userLogin" className="login" >Login as User</Link>
                 </div>
 
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/userLogin" element={<LoginPage />} />
+                    <Route path="/serviceLogin" element={<LoginPage/>}/>
                     <Route path="/fitness" element={<FitnessPage/>} />
                     <Route path="/medical" element={<MedicalPage/>} />
                     <Route path="/beauty" element={<BeautyPage/>} />
+                    <Route path="/register" element={<RegistrationPage/>} />
                     
                 </Routes>
             </div>

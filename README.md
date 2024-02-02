@@ -82,3 +82,4 @@ Name: sql5681635
 Username: sql5681635
 Password: G8DT2YBJIv
 Port number: 3306
+Link: http://www.phpmyadmin.co/ 

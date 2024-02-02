@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+Push- 
+Once you have made changes that you are satisfied with on your file, in your cmd or bash, type 'git status', 'git add .' git commit -m "changes you made"', and then to push it to the repository you do 'git push origin react'. 
+
+Pull- 
+To make sure you have the updated source code, do 'git pull origin react' and this will update your local files to the same as the github
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -68,3 +75,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Accessing phpmyadmin and SQL Database
+Server: sql5.freemysqlhosting.net
+Name: sql5681635
+Username: sql5681635
+Password: G8DT2YBJIv
+Port number: 3306
+Link: http://www.phpmyadmin.co/ 

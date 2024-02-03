@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import {Link, useParams, useLocation} from 'react-router-dom';
 import './LoginPage.css';
+//import { use } from '../backend/appointment-express/regBackend';
 
 function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [role, setRole] = useState('user');
+    const [role, setRole] = useState('');
+    const location = useLocation
+
+    useEffect(() => {
+        setRole(location.state?.role || 'user');
+    }, [location]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -14,7 +20,7 @@ function LoginPage() {
         if (role === 'user'){
             //user logic
         }else if (role === 'service-provider'){
-        // After login logic 
+            //service provider logic
         }
     };
 
@@ -23,15 +29,6 @@ function LoginPage() {
             <div className = "login-card">
                 <h2>Login</h2>
                 <form className="login-form" onSubmit = {handleSubmit}>
-                    <div>
-                        <label>
-                            Role:
-                            <select value={role} onChange={(e) => setRole(e.target.value)} className="login-input">
-                                <option value="user">User</option>
-                                <option value="serviceProvider">Service Provider</option>
-                            </select>
-                        </label>
-                    </div>
                     <div>
                         <label>
                             Username: 
@@ -59,7 +56,7 @@ function LoginPage() {
                     </div>
                 </form>
                 <div className="register-link">
-                <Link to="/register">Don't have an account? Register</Link>
+                <Link to="/register" state={{role}}>Don't have an account? Register</Link>
             </div>
             </div>
         </div>

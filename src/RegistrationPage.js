@@ -8,9 +8,31 @@ function RegistrationPage (){
     const [regPassword, setPassword] = useState('');
     const [regConfirmPassword, setConfirmPassword] = useState('');
 
+    const emailRegex = /\S+@\S+\.\S+/ // email validation regex
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; //password validation regex
+
+    //validates the user entered valid forms of email and password
+    const validateForm = () => {
+        if (!emailRegex.test(regEmail)) {
+            alert('Invalid email');
+            return false;
+        }else if (!passwordRegex.test(regPassword)) {
+            alert('Password must contain at least 8 characters, including 1 letter and 1 number');
+            return false;
+        }if (regPassword !== regConfirmPassword) {
+            alert('Passwords do not match');
+            return false;
+        }
+        return true;
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-        //reg logic goes here
+        
+        if(!validateForm()) return;
+        
+
+
         const userData = {
             name: regName,
             email: regEmail,

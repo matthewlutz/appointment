@@ -1,8 +1,13 @@
 
 const express = require('express');
+const cors = require('cors');
 const app = express();
+const registrationRouter = require('./regBackend');
 
 app.use(express.json());
+app.use(cors());
+
+app.use('/api', registrationRouter);
 
 const port = process.env.PORT || 3001;
 
@@ -12,17 +17,4 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
-});
-
-app.post(/api/register, async (req, res) => {
-
-    const { name, email, password, confirmPassword } = req.body;
-    try{
-        //register logic goes here
-
-        res.status(201).json({ message: 'Registration successful' });
-    }catch (error){
-        //handle errors
-        res.status(500).json({ message: 'Registration failed' });
-    }
 });

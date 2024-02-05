@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link, useParams, useLocation} from 'react-router-dom';
-import './LoginPage.css';
+import './styles/LoginPage.css';
 //import { use } from '../backend/appointment-express/regBackend';
 
 function LoginPage() {

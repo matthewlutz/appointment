@@ -1,13 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './common/logo.svg';
 import './Main.css';
 import {Route, Link, BrowserRouter, Routes } from 'react-router-dom';
-import LoginPage from './LoginPage';
-import HomePage from './HomePage';
+import LoginPage from './common/LoginPage';
+import HomePage from './common/HomePage';
 import FitnessPage from './FitnessPage';
 import MedicalPage from './MedicalPage';
 import BeautyPage from './BeautyPage';
-import RegistrationPage from './RegistrationPage';
+import RegistrationPage from './common/RegistrationPage';
 
 
 function App() {   

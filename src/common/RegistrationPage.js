@@ -1,12 +1,17 @@
 import React, {useState} from 'react';
-import {Link} from "react-router-dom";
-import './Registration.css';
+import {Link, useNavigate, useLocation} from "react-router-dom";
+import './styles/Registration.css';
+
+
 function RegistrationPage (){
     const [showRegistration, setShowRegistration] = useState(false);
     const [regName, setName] = useState('');
     const [regEmail, setEmail] = useState('');
     const [regPassword, setPassword] = useState('');
     const [regConfirmPassword, setConfirmPassword] = useState('');
+    const location = useLocation();
+    const [role, setRole] = useState(location.state?.role || 'user'); 
+    const navigate = useNavigate();
 
     const emailRegex = /\S+@\S+\.\S+/ // email validation regex
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; //password validation regex
@@ -31,13 +36,12 @@ function RegistrationPage (){
         
         if(!validateForm()) return;
         
-
-
         const userData = {
             name: regName,
             email: regEmail,
             password: regPassword,
-            confirmPassword: regConfirmPassword
+            confirmPassword: regConfirmPassword,
+            role,
         }
         try{
             const response = await fetch('http://localhost:3001/api/register', {
@@ -51,6 +55,11 @@ function RegistrationPage (){
             const data = await response.json();
             if(response.ok){
                 console.log(data.message);
+                if(role === 'service-provider'){
+                    navigate('/BusinessDetailsForm');
+                }else if (role === 'user'){
+                    //navigate('/login');
+                }
             }else{
                 console.log(data.message);
             }

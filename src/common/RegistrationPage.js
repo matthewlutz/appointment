@@ -54,9 +54,9 @@ function RegistrationPage (){
 
             const data = await response.json();
             if(response.ok){
-                console.log(data.message);
+                console.log(data.message + ' ' + data.role);
                 if(role === 'service-provider'){
-                    navigate('/BusinessDetailsForm');
+                    navigate('/service-providers/BusinessDetailsForm');
                 }else if (role === 'user'){
                     //navigate('/login');
                 }

@@ -7,9 +7,11 @@ function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
-    const location = useLocation
+    const location = useLocation();
 
+    //console.log(location.state);
     useEffect(() => {
+        //console.log("Role from state:", location.state?.role);
         setRole(location.state?.role || 'user');
     }, [location]);
 

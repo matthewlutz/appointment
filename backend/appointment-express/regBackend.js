@@ -4,7 +4,7 @@ const db = require('./appointment-database');
 const router = express.Router();
 
 router.post('/register', async (req, res) => {
-    const { name, email, password, confirmPassword } = req.body;
+    const { name, email, password, confirmPassword, role } = req.body;
 
     if (!name || !email || !password || !confirmPassword) {
         return res.status(400).json({ message: 'All fields are required' });
@@ -28,13 +28,13 @@ router.post('/register', async (req, res) => {
             // No user exists, proceed with registration
             try {
                 const hashedPassword = await bcrypt.hash(password, 10);
-                const insertQuery = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
-                db.query(insertQuery, [name, email, hashedPassword], (error, results) => {
+                const insertQuery = 'INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)';
+                db.query(insertQuery, [name, email, hashedPassword, role], (error, results) => {
                     if (error) {
                         console.error('Error inserting user into database:', error);
                         return res.status(500).json({ message: 'Error registering user' });
                     }
-                    res.status(201).json({ message: 'User registered successfully' });
+                    res.status(201).json({ message: 'User registered successfully', role: role });
                 });
             } catch (error) {
                 console.error('Error during registration:', error);

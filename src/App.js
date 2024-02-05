@@ -8,6 +8,7 @@ import FitnessPage from './FitnessPage';
 import MedicalPage from './MedicalPage';
 import BeautyPage from './BeautyPage';
 import RegistrationPage from './common/RegistrationPage';
+import BusinessDetailsForm from './service-providers/BusinessDetailsForm';
 
 
 function App() {   
@@ -27,7 +28,8 @@ function App() {
                 </div>
 
                 <Routes>
-                    <Route path="/" element={<HomePage />} />
+                    <Route path="/" element={<HomePage />} />\
+                    <Route path="/service-providers/BusinessDetailsForm" element={<BusinessDetailsForm/>} />
                     <Route path="/login" element={<LoginPage/>}/>
                     <Route path="/fitness" element={<FitnessPage/>} />
                     <Route path="/medical" element={<MedicalPage/>} />

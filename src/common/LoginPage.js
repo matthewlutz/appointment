@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Link, useParams, useLocation} from 'react-router-dom';
+import {Link, useParams, useLocation, useNavigate} from 'react-router-dom';
 import './styles/LoginPage.css';
 //import { use } from '../backend/appointment-express/regBackend';
 
@@ -9,6 +9,7 @@ function LoginPage() {
     const [role, setRole] = useState('');
     const location = useLocation();
     const title = location.state?.role === 'service-provider' ? 'Login as Service Provider' : 'Login as User';
+    const navigate = useNavigate();
 
     //console.log(location.state);
     useEffect(() => {
@@ -16,14 +17,33 @@ function LoginPage() {
         setRole(location.state?.role || 'user');
     }, [location]);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         // Login logic
-        console.log('Username:', username, 'Password:', password);
-        if (role === 'user'){
-            //user logic
-        }else if (role === 'service-provider'){
-            //service provider logic
+        console.log('Username:', username, 'Password:', password, 'Role:', role);
+        try {
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                    role, 
+                }),
+            });
+
+            const data = await response.json();
+            if(response.ok){
+                console.log('Login Succesful:', data.message);
+                navigate('/service-providers/serviceDashBoard')// Redirect to dashboard
+            
+            }else{
+                console.error('Login failed:', data.message);
+            }
+        }catch (error) {
+            console.error('Login failed:', error);
         }
     };
 

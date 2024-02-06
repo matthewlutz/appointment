@@ -10,6 +10,7 @@ import MedicalPage from './MedicalPage';
 import BeautyPage from './BeautyPage';
 import RegistrationPage from './common/RegistrationPage';
 import BusinessDetailsForm from './service-providers/BusinessDetailsForm';
+import ServiceDashboard from './service-providers/ServiceDashboard';
 
 
 function App() {   
@@ -33,6 +34,7 @@ function App() {
         </nav>
 
         <Routes>
+          <Route path="/service-providers/serviceDashBoard" element={<ServiceDashboard />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/service-providers/BusinessDetailsForm" element={<BusinessDetailsForm />} />
           <Route path="/login" element={<LoginPage />} />

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Form } from 'react-router-dom';
+//import { Form } from 'react-router-dom';
 
 
 function BusinessDetailsForm() {
@@ -22,69 +22,65 @@ function BusinessDetailsForm() {
 
 
     return (
-        <form onSubmit={handleSubmit} className="business-details-form">
-            <div>
-                <label>
-                    Business Name:
-                    <input type="text" value={businessName} onChange={(e) => setBusinessName(e.target.value)} />
-                </label>
+        <div className="max-w-4xl mx-auto p-5">
+        <form onSubmit={handleSubmit} className="space-y-6 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <h2 className="text-center text-3xl font-extrabold text-gray-900 mb-6">Business Registration</h2>
+            
+            <div className="mb-4">
+                <label htmlFor="businessName" className="block text-sm font-medium text-gray-700">Business Name</label>
+                <input type="text" id="businessName" value={businessName} onChange={(e) => setBusinessName(e.target.value)} className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
             </div>
-            <div>
-                <label>
-                    Service Type:
-                    <input type="text" value={serviceType} onChange={(e) => setServiceType(e.target.value)} />
-                </label>
+
+            <div className="mb-4">
+                <label htmlFor="serviceType" className="block text-sm font-medium text-gray-700">Service Type</label>
+                <input type="text" id="serviceType" value={serviceType} onChange={(e) => setServiceType(e.target.value)} className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
             </div>
-            <div>
-                <label>
-                    Appointment Duration:
-                    <input type="text" value={appointmentDuration} onChange={(e) => setAppointmentDuration(e.target.value)} />
-                </label>
+
+            <div className="mb-4">
+                <label htmlFor="appointmentDuration" className="block text-sm font-medium text-gray-700">Appointment Duration</label>
+                <input type="text" id="appointmentDuration" value={appointmentDuration} onChange={(e) => setAppointmentDuration(e.target.value)} className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
             </div>
-            <div>
-                <label>
-                    Appointment Price:
-                    <input type="text" value={appointmentPrice} onChange={(e) => setAppointmentPrice(e.target.value)} />
-                </label>   
+
+            <div className="mb-4">
+                <label htmlFor="appointmentPrice" className="block text-sm font-medium text-gray-700">Appointment Price</label>
+                <input type="text" id="appointmentPrice" value={appointmentPrice} onChange={(e) => setAppointmentPrice(e.target.value)} className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
             </div>
-            <div>
-                <label>
-                    Business Address:
-                    <input type="text" value={businessAddress} onChange={(e) => setBusinessAddress(e.target.value)} />
-                </label>    
+
+            <div className="mb-4">
+                <label htmlFor="businessAddress" className="block text-sm font-medium text-gray-700">Business Address</label>
+                <input type="text" id="businessAddress" value={businessAddress} onChange={(e) => setBusinessAddress(e.target.value)} className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
             </div>
-            <div>
-                <label>
-                    Business Description:
-                    <input type="text" value={businessDescription} onChange={(e) => setBusinessDescription(e.target.value)} />
-                </label>   
+
+            <div className="mb-4">
+                <label htmlFor="businessDescription" className="block text-sm font-medium text-gray-700">Business Description</label>
+                <textarea id="businessDescription" value={businessDescription} onChange={(e) => setBusinessDescription(e.target.value)} className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
             </div>
-            <div>
-                <label>
-                    Email:
-                    <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </label>   
+
+            <div className="mb-4">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
             </div>
-            <div>
-                <label>
-                    Phone:
-                    <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
-                </label>
+
+            <div className="mb-4">
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone</label>
+                <input type="text" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
             </div>
-            <div>
-                <label>
-                    Website:
-                    <input type="text" value={website} onChange={(e) => setWebsite(e.target.value)} />
-                </label>
+
+            <div className="mb-4">
+                <label htmlFor="website" className="block text-sm font-medium text-gray-700">Website</label>
+                <input type="text" id="website" value={website} onChange={(e) => setWebsite(e.target.value)} className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
             </div>
-            <div>
-                <label>
-                    Upload Image:
-                    <input type="file" value={file} onChange={(e) => setFile(e.target.value)} />
-                </label>
+
+            <div className="mb-4">
+                <label htmlFor="file" className="block text-sm font-medium text-gray-700">Upload Image</label>
+                <input type="file" id="file" onChange={(e) => setFile(e.target.value)} className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
             </div>
-            <button type="submit">Submit</button>
-        </form>       
+
+            <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Submit
+            </button>
+        </form>
+    </div>  
     );
 }
 

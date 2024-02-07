@@ -10,7 +10,7 @@ import MedicalPage from './MedicalPage';
 import BeautyPage from './BeautyPage';
 import RegistrationPage from './common/RegistrationPage';
 import BusinessDetailsForm from './service-providers/BusinessDetailsForm';
-import ServiceDashboard from './service-providers/ServiceDashboard';
+import ServiceDashboard from './service-providers/serviceDashboard';
 
 
 function App() {   

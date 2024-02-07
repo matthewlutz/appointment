@@ -9,6 +9,9 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api', registrationRouter);
+app.use('/api', loginRouter);
+
+
 
 const port = process.env.PORT || 3001;
 

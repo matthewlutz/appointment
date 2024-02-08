@@ -32,7 +32,9 @@ function RegistrationPage (){
             registerErrorMsg.style.opacity = 1;
             return false;
         }if (regPassword !== regConfirmPassword) {
-            alert('Passwords do not match');
+            //alert('Passwords do not match');
+            registerErrorMsg.innerHTML = "Passwords do not match"
+            registerErrorMsg.style.opacity = 1;
             return false;
         }
         return true;

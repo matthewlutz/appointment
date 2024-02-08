@@ -56,3 +56,13 @@
 .login-link:hover {
     text-decoration: underline;
 }
+
+#registerErrorMsg{
+    opacity: 0;
+    color: red;
+    background: lightpink;
+    border-color: #b24444;
+    border-width: medium;
+    padding: .1em;
+    text-align: center;
+}

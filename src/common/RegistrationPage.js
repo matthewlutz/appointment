@@ -13,17 +13,23 @@ function RegistrationPage (){
     const [role, setRole] = useState(location.state?.role || 'user'); 
     const navigate = useNavigate();
     const title = role === 'service-provider' ? 'Register as Service Provider' : 'Register as User';
+    
 
     const emailRegex = /\S+@\S+\.\S+/ // email validation regex
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; //password validation regex
 
     //validates the user entered valid forms of email and password
     const validateForm = () => {
+        const registerErrorMsg = document.getElementById("registerErrorMsg")
         if (!emailRegex.test(regEmail)) {
-            alert('Invalid email');
+            //alert('Invalid email');
+            registerErrorMsg.innerHTML = "Invalid Email"
+            registerErrorMsg.style.opacity = 1;
             return false;
         }else if (!passwordRegex.test(regPassword)) {
-            alert('Password must contain at least 8 characters, including 1 letter and 1 number');
+            //alert('Password must contain at least 8 characters, including 1 letter and 1 number');
+            registerErrorMsg.innerHTML = "Password must contain at least 8 characters, including 1 letter and 1 number"
+            registerErrorMsg.style.opacity = 1;
             return false;
         }if (regPassword !== regConfirmPassword) {
             alert('Passwords do not match');
@@ -74,6 +80,7 @@ function RegistrationPage (){
             <div className="w-full max-w-md p-8 space-y-8 bg-white shadow-lg rounded-lg">
                 <h2 className="text-2xl font-bold text-center">{title}</h2>
                 <form className="space-y-6" onSubmit={handleSubmit}>
+                    <div id="registerErrorMsg"></div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">
                             Name:

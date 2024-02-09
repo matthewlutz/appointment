@@ -21,6 +21,10 @@ function RegistrationPage (){
     //validates the user entered valid forms of email and password
     const validateForm = () => {
         const registerErrorMsg = document.getElementById("registerErrorMsg")
+
+        registerErrorMsg.innerHTML = "";
+        registerErrorMsg.style.opacity = 0;
+        
         if (!emailRegex.test(regEmail)) {
             //alert('Invalid email');
             registerErrorMsg.innerHTML = "Invalid Email"

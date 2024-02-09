@@ -25,6 +25,8 @@ function RegistrationPage (){
             //alert('Invalid email');
             registerErrorMsg.innerHTML = "Invalid Email"
             registerErrorMsg.style.opacity = 1;
+            const border = document.getElementById("emailRegistationInput");
+            border.style.borderColor = "red";
             return false;
         }else if (!passwordRegex.test(regPassword)) {
             //alert('Password must contain at least 8 characters, including 1 letter and 1 number');
@@ -102,6 +104,7 @@ function RegistrationPage (){
                                 value={regEmail}
                                 onChange={(e) => setEmail(e.target.value)}
                                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                                id = "emailRegistationInput"
                             />
                         </label>
                     </div>
@@ -113,6 +116,7 @@ function RegistrationPage (){
                                 value={regPassword}
                                 onChange={(e) => setPassword(e.target.value)}
                                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                                id = "passReg"
                             />
                         </label>
                     </div>

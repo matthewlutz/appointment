@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link, useParams, useLocation, useNavigate} from 'react-router-dom';
+import { useAuth } from './../Authenticator';
 import './styles/LoginPage.css';
 //import { use } from '../backend/appointment-express/regBackend';
 
@@ -7,6 +8,7 @@ function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
+    const { login } = useAuth();
     const location = useLocation();
     const title = location.state?.role === 'service-provider' ? 'Login as Service Provider' : 'Login as User';
     const navigate = useNavigate();
@@ -37,8 +39,12 @@ function LoginPage() {
             const data = await response.json();
             if(response.ok){
                 console.log('Login Succesful:', data.message);
-                navigate('/service-providers/ServiceDashBoard')// Redirect to dashboard
-            
+                login(data);
+                if (role === 'service-provider') {
+                    navigate('/service-providers/ServiceDashBoard'); // brings the service provider to the service provider dashboard
+                } else if (role === 'user') {
+                    navigate('/users/UserDashboard'); // bring the user to the user dashboard 
+                }
             }else{
                 console.error('Login failed:', data.message);
             }

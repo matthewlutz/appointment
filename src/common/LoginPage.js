@@ -12,6 +12,7 @@ function LoginPage() {
     const location = useLocation();
     const title = location.state?.role === 'service-provider' ? 'Login as Service Provider' : 'Login as User';
     const navigate = useNavigate();
+    const errorMsg = document.getElementById("ErrorMsg");
 
     //console.log(location.state);
     useEffect(() => {
@@ -47,6 +48,7 @@ function LoginPage() {
                 }
             }else{
                 console.error('Login failed:', data.message);
+                errorMsg.innerHTML = "Login failed";
             }
         }catch (error) {
             console.error('Login failed:', error);
@@ -58,6 +60,7 @@ function LoginPage() {
             <div className="flex flex-col items-center w-full max-w-m m-4">
                 <h2 className="text-center text-3xl font-extrabold text-white mb-6 whitesapce-nowrap">{title}</h2>
                     <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+                        <div id = "ErrorMsg"></div>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                             Email:

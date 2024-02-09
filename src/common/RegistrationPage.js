@@ -67,7 +67,7 @@ function RegistrationPage (){
                 if(role === 'service-provider'){
                     navigate('/service-providers/BusinessDetailsForm');
                 }else if (role === 'user'){
-                    //navigate('/login');
+                    navigate('/users/userDashboard');
                 }
             }else{
                 console.log(data.message);

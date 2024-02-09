@@ -32,11 +32,17 @@ function RegistrationPage (){
             //alert('Password must contain at least 8 characters, including 1 letter and 1 number');
             registerErrorMsg.innerHTML = "Password must contain at least 8 characters, including 1 letter and 1 number"
             registerErrorMsg.style.opacity = 1;
+            const border = document.getElementById("passBox");
+            border.style.borderColor = "red";
             return false;
         }if (regPassword !== regConfirmPassword) {
             //alert('Passwords do not match');
             registerErrorMsg.innerHTML = "Passwords do not match"
             registerErrorMsg.style.opacity = 1;
+            const passBorder = document.getElementById("passBox");
+            const confirmBorder = document.getElementById("comfirmPassBox");
+            passBorder.style.borderColor = "red";
+            confirmBorder.style.borderColor = "red";
             return false;
         }
         return true;
@@ -116,7 +122,7 @@ function RegistrationPage (){
                                 value={regPassword}
                                 onChange={(e) => setPassword(e.target.value)}
                                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                                id = "passReg"
+                                id = "passBox"
                             />
                         </label>
                     </div>
@@ -128,6 +134,7 @@ function RegistrationPage (){
                                 value={regConfirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                                id = "confirmPassBox"
                             />
                         </label>
                     </div>

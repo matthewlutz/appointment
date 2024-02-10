@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './index.css';
 import logo from './common/logo.svg';
 import './Main.css';
-import {Route, Link, BrowserRouter, Routes } from 'react-router-dom';
+import {Route, Link, BrowserRouter, Routes, useNavigate } from 'react-router-dom';
 import LoginPage from './common/LoginPage';
 import HomePage from './common/HomePage';
 import FitnessPage from './FitnessPage';
@@ -12,12 +12,27 @@ import RegistrationPage from './common/RegistrationPage';
 import BusinessDetailsForm from './service-providers/BusinessDetailsForm';
 import ServiceDashboard from './service-providers/serviceDashboard';
 import { AuthProvider, useAuth } from './Authenticator';
+import LogoutModal from './common/LogoutModal'
+
 
 function NavBar() {
   const {user, logout} = useAuth();
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   console.log(user);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate('/');
+    logout();
+    setIsLogoutModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsLogoutModalOpen(false);
+  };
 
   return(
+    <>
     <nav className="bg-white shadow-md">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-6">
@@ -31,7 +46,7 @@ function NavBar() {
               <>
                 {/* logged in */}
                 <span className="text-black">{user.name}</span>
-                <button onClick={() => logout()} className="text-black hover:text-blue-600 transition duration-300">Logout</button>
+                <button onClick={() => setIsLogoutModalOpen(true)} className="text-black hover:text-blue-600 transition duration-300">Logout</button>
                 <Link to="/notifications" className="text-black hover:text-blue-600 transition duration-300">Notifications</Link>
               </>
             ) : (
@@ -45,6 +60,12 @@ function NavBar() {
         </div>
       </div>
     </nav>
+    <LogoutModal 
+      isOpen={isLogoutModalOpen} 
+      onClose={handleCancel} 
+      onConfirm={handleLogout} 
+    />
+    </>
   );
 }
 

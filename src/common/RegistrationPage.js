@@ -21,7 +21,12 @@ function RegistrationPage (){
     //validates the user entered valid forms of email and password
     const validateForm = () => {
         const registerErrorMsg = document.getElementById("registerErrorMsg")
+        const passBorder = document.getElementById("passBox");
+        const border = document.getElementById("emailRegistationInput");
 
+        passBorder.style.borderColor = "black";
+        border.style.borderColor = "black";
+        //confirmBorder.style.borderColor = "black";
         registerErrorMsg.innerHTML = "";
         registerErrorMsg.style.opacity = 0;
         
@@ -29,22 +34,20 @@ function RegistrationPage (){
             //alert('Invalid email');
             registerErrorMsg.innerHTML = "Invalid Email"
             registerErrorMsg.style.opacity = 1;
-            const border = document.getElementById("emailRegistationInput");
+            
             border.style.borderColor = "red";
             return false;
         }else if (!passwordRegex.test(regPassword)) {
             //alert('Password must contain at least 8 characters, including 1 letter and 1 number');
             registerErrorMsg.innerHTML = "Password must contain at least 8 characters, including 1 letter and 1 number"
             registerErrorMsg.style.opacity = 1;
-            const border = document.getElementById("passBox");
-            border.style.borderColor = "red";
+            passBorder.style.borderColor = "red";
             return false;
         }if (regPassword !== regConfirmPassword) {
             //alert('Passwords do not match');
+            const confirmBorder = document.getElementById("comfirmPassBox");
             registerErrorMsg.innerHTML = "Passwords do not match"
             registerErrorMsg.style.opacity = 1;
-            const passBorder = document.getElementById("passBox");
-            const confirmBorder = document.getElementById("comfirmPassBox");
             passBorder.style.borderColor = "red";
             confirmBorder.style.borderColor = "red";
             return false;

@@ -13,8 +13,7 @@
 
 .ripple-background {
   background: 
-    linear-gradient(to top right, #4e54c8, #d9175b),
-    linear-gradient(to bottom right,  #e9b555, #e43846);   
+    linear-gradient(to top right, #141fe8, #d9175b,  #e9b555, #9927fd);
   background-size: cover;
   animation: rippleAnimation 30s infinite linear;
 }

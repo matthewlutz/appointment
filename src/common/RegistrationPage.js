@@ -29,11 +29,7 @@ function RegistrationPage (){
         //confirmBorder.style.borderColor = "black";
         registerErrorMsg.innerHTML = "";
         registerErrorMsg.style.opacity = 0;
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> fc44a285ad83c8b3749e30de2b79f4174e775bd4
         if (!emailRegex.test(regEmail)) {
             //alert('Invalid email');
             registerErrorMsg.innerHTML = "Invalid Email"

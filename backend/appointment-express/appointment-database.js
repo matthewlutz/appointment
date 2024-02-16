@@ -1,5 +1,5 @@
 
-require('dotenv').config({ path: './matthew.env'}); 
+require('dotenv').config({ path: './names.env'}); 
 
 const mysql = require('mysql');
 

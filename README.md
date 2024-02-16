@@ -3,12 +3,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-DB_HOST=aws-appointment-cs341.cz24ccm8wua8.us-east-2.rds.amazonaws.com
-DB_USER=admin
-DB_PASS=cs341appointment!
-DB_NAME=aws_database
-
-
 Push- 
 Once you have made changes that you are satisfied with on your file, in your cmd or bash, type 'git status', 'git add .' git commit -m "changes you made"', and then to push it to the repository you do 'git push origin react'. 
 

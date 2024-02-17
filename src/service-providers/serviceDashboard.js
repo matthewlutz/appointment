@@ -2,6 +2,7 @@
 
 import React, {useState, useEffect} from 'react';
 import FullCalendar from '@fullcalendar/react';
+import { Link } from 'react-router-dom';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import './../index.css'; 
@@ -53,15 +54,13 @@ function ServiceDashboard() {
                 <button className="text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-red-500 hover:bg-red-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Appointment History
                 </button>
-                <button className="text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-blue-400 hover:bg-blue-400 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                <Link to="/appointmentTrends" className="text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-blue-400 hover:bg-blue-400 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Analytics/Trends
-                </button>
+                </Link>
 
-
-                {/* Add more buttons as needed */}
-                <button className="text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-gray-400 hover:bg-gray-400 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                <Link to='/serviceSettings' className="text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-gray-400 hover:bg-gray-400 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Settings
-                </button>
+                </Link>
             </div>
 
 

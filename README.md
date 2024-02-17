@@ -76,10 +76,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-### Accessing phpmyadmin and SQL Database
-Server: sql5.freemysqlhosting.net
-Name: sql5681635
-Username: sql5681635
-Password: G8DT2YBJIv
-Port number: 3306
-Link: http://www.phpmyadmin.co/ 
+

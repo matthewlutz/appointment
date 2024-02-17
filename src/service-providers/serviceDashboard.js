@@ -38,7 +38,7 @@ function ServiceDashboard() {
 
 
     return (
-        <div className="flex h-screen">
+        <div className=" h-screen">
             {/* Sidebar/dashboard */}
             <div className="w-1/5 min-h-screen bg-gray-800 p-5 border-r border-gray-200">
                 <h2 className="text-2xl font-semibold text-gray-100 mb-5">Dashboard</h2>
@@ -51,9 +51,9 @@ function ServiceDashboard() {
                 <button className="text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-purple-500 hover:bg-purple-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Edit Services
                 </button>
-                <button className="text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-red-500 hover:bg-red-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                <Link to='/AppointmentHistory' className="text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-red-500 hover:bg-red-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Appointment History
-                </button>
+                </Link>
                 <Link to="/appointmentTrends" className="text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-blue-400 hover:bg-blue-400 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Analytics/Trends
                 </Link>

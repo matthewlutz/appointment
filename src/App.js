@@ -15,6 +15,7 @@ import { AuthProvider, useAuth } from './Authenticator';
 import LogoutModal from './common/LogoutModal'
 import ServiceSettings from './service-providers/serviceSettings';
 import AppointmentTrends from './service-providers/appointentTrends';
+import AppointmentHistory from './service-providers/AppointmentHistory';
 
 
 function NavBar() {
@@ -79,6 +80,7 @@ function App() {
     <BrowserRouter>
       <NavBar /> {/* Use the NavBar component */}
       <Routes>
+        <Route path="service-provider/AppointmentHistory" element={<AppointmentHistory />} />
         <Route path="service-provider/appointmentTrends" element={<AppointmentTrends />} />
         <Route path="service-provider/serviceSettings" element={<ServiceSettings />} />
         <Route path="/service-providers/serviceDashBoard" element={<ServiceDashboard />} />

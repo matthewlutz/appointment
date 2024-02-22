@@ -17,6 +17,8 @@ import ServiceSettings from './service-providers/serviceSettings';
 import AppointmentTrends from './service-providers/appointentTrends';
 import AppointmentHistory from './service-providers/AppointmentHistory';
 import ViewAppointments from './service-providers/viewAppointments';
+import UserDashboard from './users/userDashboard';
+import BusinessPage from './common/businesses';
 
 
 function NavBar() {
@@ -25,13 +27,13 @@ function NavBar() {
   console.log(user);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    navigate('/');
+  const handleLogout = async () => {
     logout();
+    navigate('/');
     setIsLogoutModalOpen(false);
-  };
+  }; //added async-may need to go back
 
-  const handleCancel = () => {
+  const handleCancel = async () => {
     setIsLogoutModalOpen(false);
   };
 
@@ -50,7 +52,7 @@ function NavBar() {
               <>
                 {/* logged in */}
                 <span className="text-black">{user.name}</span>
-                <Link to="/serviceProviders/serviceDashboard" className="text-black hover:text-blue-600 transition duration-300">Dashboard</Link>
+                <Link to="/service-providers/serviceDashboard" state={{role: 'service-provider'}} className="text-black hover:text-blue-600 transition duration-300">Dashboard</Link>
                 <Link to="/notifications" className="text-black hover:text-blue-600 transition duration-300">Notifications</Link>
                 <button onClick={() => setIsLogoutModalOpen(true)} className="text-black hover:text-blue-600 transition duration-300">Logout</button>
                 
@@ -81,6 +83,7 @@ function App() {
     <BrowserRouter>
       <NavBar /> {/* Use the NavBar component */}
       <Routes>
+        <Route path="/users/userDashboard" element={<UserDashboard />} />
         <Route path="/service-providers/viewAppointments" element={<ViewAppointments />} /> 
         <Route path="/service-providers/AppointmentHistory" element={<AppointmentHistory />} />
         <Route path="/service-providers/appointmentTrends" element={<AppointmentTrends />} />
@@ -93,6 +96,7 @@ function App() {
         <Route path="/medical" element={<MedicalPage />} />
         <Route path="/beauty" element={<BeautyPage />} />
         <Route path="/register" element={<RegistrationPage />} />
+        <Route path="/common/businesses" element={<BusinessPage />} />
       </Routes>
     </BrowserRouter>
   </AuthProvider>

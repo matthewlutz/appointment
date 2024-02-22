@@ -23,7 +23,7 @@ function LoginPage() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         // Login logic
-        console.log('Email:', email, 'Password:', password, 'Role:', role);
+        console.log('E-mail:', email, 'Password:', password, 'Role:', role);
         try {
             const response = await fetch('http://localhost:3001/api/login', {
                 method: 'POST',
@@ -39,12 +39,12 @@ function LoginPage() {
 
             const data = await response.json();
             if(response.ok){
-                console.log('Login Succesful:', data.message);
+                console.log('Response ok:', data.message);
                 login(data);
                 if (role === 'service-provider') {
                     navigate('/service-providers/ServiceDashBoard'); // brings the service provider to the service provider dashboard
                 } else if (role === 'user') {
-                    navigate('/users/UserDashboard'); // bring the user to the user dashboard 
+                    navigate('/users/userDashboard'); // bring the user to the user dashboard 
                 }
             }else{
                 console.error('Login failed:', data.message);

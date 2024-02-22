@@ -12,7 +12,11 @@ import RegistrationPage from './common/RegistrationPage';
 import BusinessDetailsForm from './service-providers/BusinessDetailsForm';
 import ServiceDashboard from './service-providers/serviceDashboard';
 import { AuthProvider, useAuth } from './Authenticator';
-import LogoutModal from './common/LogoutModal'
+import LogoutModal from './common/LogoutModal';
+import ServiceSettings from './service-providers/serviceSettings';
+import AppointmentTrends from './service-providers/appointentTrends';
+import AppointmentHistory from './service-providers/AppointmentHistory';
+import ViewAppointments from './service-providers/viewAppointments';
 
 
 function NavBar() {
@@ -46,8 +50,10 @@ function NavBar() {
               <>
                 {/* logged in */}
                 <span className="text-black">{user.name}</span>
-                <button onClick={() => setIsLogoutModalOpen(true)} className="text-black hover:text-blue-600 transition duration-300">Logout</button>
+                <Link to="/serviceProviders/serviceDashboard" className="text-black hover:text-blue-600 transition duration-300">Dashboard</Link>
                 <Link to="/notifications" className="text-black hover:text-blue-600 transition duration-300">Notifications</Link>
+                <button onClick={() => setIsLogoutModalOpen(true)} className="text-black hover:text-blue-600 transition duration-300">Logout</button>
+                
               </>
             ) : (
               <>
@@ -75,6 +81,10 @@ function App() {
     <BrowserRouter>
       <NavBar /> {/* Use the NavBar component */}
       <Routes>
+        <Route path="/service-providers/viewAppointments" element={<ViewAppointments />} /> 
+        <Route path="/service-providers/AppointmentHistory" element={<AppointmentHistory />} />
+        <Route path="/service-providers/appointmentTrends" element={<AppointmentTrends />} />
+        <Route path="/service-providers/serviceSettings" element={<ServiceSettings />} />
         <Route path="/service-providers/serviceDashBoard" element={<ServiceDashboard />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/service-providers/BusinessDetailsForm" element={<BusinessDetailsForm />} />

@@ -2,6 +2,7 @@
 
 import React, {useState, useEffect} from 'react';
 import FullCalendar from '@fullcalendar/react';
+import { Link } from 'react-router-dom';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import './../index.css'; 
@@ -37,31 +38,29 @@ function ServiceDashboard() {
 
 
     return (
-        <div className="flex h-screen">
+        <div className=" h-screen">
             {/* Sidebar/dashboard */}
             <div className="w-1/5 min-h-screen bg-gray-800 p-5 border-r border-gray-200">
                 <h2 className="text-2xl font-semibold text-gray-100 mb-5">Dashboard</h2>
-                <button className="text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-blue-700 hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                <button className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-blue-700 hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Home
                 </button>
-                <button className="text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-green-500 hover:bg-green-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                <Link to='/service-providers/viewAppointments' className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-green-500 hover:bg-green-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Appointments
-                </button>
-                <button className="text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-purple-500 hover:bg-purple-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                </Link>
+                <button className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-purple-500 hover:bg-purple-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Edit Services
                 </button>
-                <button className="text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-red-500 hover:bg-red-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                <Link to='/service-providers/AppointmentHistory' className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-red-500 hover:bg-red-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Appointment History
-                </button>
-                <button className="text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-blue-400 hover:bg-blue-400 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                </Link>
+                <Link to="/service-providers/appointmentTrends" className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-blue-400 hover:bg-blue-400 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Analytics/Trends
-                </button>
+                </Link>
 
-
-                {/* Add more buttons as needed */}
-                <button className="text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-gray-400 hover:bg-gray-400 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                <Link to='/service-providers/serviceSettings' className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-gray-400 hover:bg-gray-400 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Settings
-                </button>
+                </Link>
             </div>
 
 

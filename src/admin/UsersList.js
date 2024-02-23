@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './styles/UsersListPage.css';
+import '../common/styles/UsersListPage.css';
 //import {Link, useParams, useLocation, useNavigate} from 'react-router-dom';
 
 function UsersList(){

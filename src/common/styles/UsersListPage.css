@@ -45,14 +45,29 @@ tr:hover {
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    border: 2px solid #4CAF50;
-    color: #ffffff;
-    background-color: #4CAF50;
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
   }
   
-#activateButton:hover {
+
+.Active{
+    border: 2px solid #4CAF50;
+    color: #ffffff;
+    background-color: #4CAF50;
+}
+
+.Active:hover{
     background-color: #45a049;
     border-color: #45a049;
-  }
+}
+
+.Deactive{
+    border: 2px solid red;
+    color: #ffffff;
+    background-color: red;
+}
+
+.Deactive:hover{
+    background-color: darkred;
+    border-color: darkred;
+}

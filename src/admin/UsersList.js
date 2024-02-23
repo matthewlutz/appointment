@@ -27,7 +27,7 @@ function UsersList(){
                             <td>{d.name}</td>
                             <td>{d.email}</td>
                             <td>{d.role}</td>
-                            <td><button id="activateButton">{d.active === 1 ? 'Active' : 'Deactive'}</button></td>
+                            <td><button id="activateButton" className={d.active === 1 ? 'Active' : 'Deactive'}>{d.active === 1 ? 'Active' : 'Deactive'}</button></td>
                                 
                         </tr>
                     ))}

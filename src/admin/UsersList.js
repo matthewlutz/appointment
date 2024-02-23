@@ -18,6 +18,7 @@ function UsersList(){
                     <th>Name</th>
                     <th>Email</th>
                     <th>User Type</th>
+                    <th>Activate/Deactivate User</th>
                 </thead>
                 <tbody>
                     {data.map((d, i) => (
@@ -26,6 +27,8 @@ function UsersList(){
                             <td>{d.name}</td>
                             <td>{d.email}</td>
                             <td>{d.role}</td>
+                            <td><button id="activateButton">{d.active === 1 ? 'Active' : 'Deactive'}</button></td>
+                                
                         </tr>
                     ))}
                 </tbody>

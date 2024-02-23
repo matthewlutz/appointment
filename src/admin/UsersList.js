@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import './styles/UsersListPage.css';
 //import {Link, useParams, useLocation, useNavigate} from 'react-router-dom';
 
 function UsersList(){
     const [data, setData] = useState([])
-    console.log("beans2")
     useEffect(() => {
         fetch('http://localhost:3001/api/users')
         .then(res => res.json())

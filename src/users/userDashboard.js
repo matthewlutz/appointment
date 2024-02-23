@@ -2,14 +2,27 @@
 
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 function UserDashboard() {
-    
+    const navigate = useNavigate();
 
+    const goToBusinessesPage = () => {
+        navigate('/common/businesses');
+    }
 
     return (
-        <div className="flex h-screen">
-
+        <div className="flex h-screen items-center justify-center flex-col">
+            <h2 className="text-xl font-semibold mb-4">User Dashboard</h2>
+            <button
+                onClick={goToBusinessesPage}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition duration-300"
+            >
+                View Businesses
+            </button>
         </div>
     );
 }

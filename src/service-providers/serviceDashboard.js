@@ -38,7 +38,7 @@ function ServiceDashboard() {
 
 
     return (
-        <div className=" h-screen">
+        <div className=" h-screen flex">
             {/* Sidebar/dashboard */}
             <div className="w-1/5 min-h-screen bg-gray-800 p-5 border-r border-gray-200">
                 <h2 className="text-2xl font-semibold text-gray-100 mb-5">Dashboard</h2>
@@ -48,9 +48,9 @@ function ServiceDashboard() {
                 <Link to='/service-providers/viewAppointments' className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-green-500 hover:bg-green-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Appointments
                 </Link>
-                <button className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-purple-500 hover:bg-purple-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                <Link to='/service-providers/BusinessDetailsForm' className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-purple-500 hover:bg-purple-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Edit Services
-                </button>
+                </Link>
                 <Link to='/service-providers/AppointmentHistory' className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-red-500 hover:bg-red-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Appointment History
                 </Link>
@@ -80,7 +80,7 @@ function ServiceDashboard() {
                     allDaySlot={false}
                     expandRows={true}
                     stickyHeaderDates={true}
-                    themeSystem='bootstrap'                     
+                    themeSystem='bootstrap'                  
                 />
                 </div>
             </div>

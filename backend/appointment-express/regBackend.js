@@ -28,8 +28,8 @@ router.post('/register', async (req, res) => {
             // No user exists, proceed with registration
             try {
                 const hashedPassword = await bcrypt.hash(password, 10);
-                const insertQuery = 'INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)';
-                db.query(insertQuery, [name, email, hashedPassword, role], (error, results) => {
+                const insertQuery = 'INSERT INTO users (name, email, password, role, active) VALUES (?, ?, ?, ?, ?)';
+                db.query(insertQuery, [name, email, hashedPassword, role, 1], (error, results) => {
                     if (error) {
                         console.error('Error inserting user into database:', error);
                         return res.status(500).json({ message: 'Error registering user' });

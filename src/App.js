@@ -9,6 +9,7 @@ import FitnessPage from './FitnessPage';
 import MedicalPage from './MedicalPage';
 import BeautyPage from './BeautyPage';
 import RegistrationPage from './common/RegistrationPage';
+import UsersList from './admin/UsersList';
 import BusinessDetailsForm from './service-providers/BusinessDetailsForm';
 import ServiceDashboard from './service-providers/serviceDashboard';
 import { AuthProvider, useAuth } from './Authenticator';
@@ -46,6 +47,8 @@ function NavBar() {
             <Link to="/medical" className="text-black hover:text-blue-600 transition duration-300">Medical</Link>
             <Link to="/beauty" className="text-black hover:text-blue-600 transition duration-300">Beauty</Link>
             <Link to="/fitness" className="text-black hover:text-blue-600 transition duration-300">Fitness</Link>
+            <Link to="/users" className='text-black hover:text-blue-600 transition duration-300'>usersList</Link>
+
             {user ? (
               <>
                 {/* logged in */}
@@ -98,7 +101,7 @@ function App() {
         <Route path="/medical" element={<MedicalPage />} />
         <Route path="/beauty" element={<BeautyPage />} />
         <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/common/businesses" element={<BusinessPage />} />
+        <Route path="/users" element={<UsersList/>}/>
       </Routes>
     </BrowserRouter>
   </AuthProvider>

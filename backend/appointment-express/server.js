@@ -5,14 +5,13 @@ const cors = require('cors');
 const app = express();
 const registrationRouter = require('./regBackend');
 const loginRouter = require('./backendLogin');
-const businessDetailsRouter = require('./businessDetails');
-
+const UsersListRouter = require('./userListBackend');
 app.use(express.json());
 app.use(cors());
 
 app.use('/api', registrationRouter);
 app.use('/api', loginRouter);
-app.use('/api', businessDetailsRouter);
+app.use('/api', UsersListRouter);
 
 
 

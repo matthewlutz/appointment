@@ -9,20 +9,28 @@ export const AuthProvider = ({children}) => {
         const storedUser = localStorage.getItem('user');
         return storedUser ? JSON.parse(storedUser) : null;
     });
+    const [usersRole, setRole] = useState(() => {
+        return localStorage.getItem('role') || '';
+    });
 
 
-    const login = (userData) => {
+    const login = (userData, role ) => {
         setUser(userData);
+        setRole(role);
         localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('role', role);
+
     }
 
     const logout = () => {
         setUser(null);
+        setRole('');
         localStorage.removeItem('user');
+        localStorage.removeItem('role');
     }
 
     return (
-        <Authenticator.Provider value={{user, login, logout}}>
+        <Authenticator.Provider value={{user, usersRole, login, logout}}>
             {children}
         </Authenticator.Provider>
     );

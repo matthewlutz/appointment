@@ -20,11 +20,9 @@ import ViewAppointments from './service-providers/viewAppointments';
 import UserDashboard from './users/userDashboard';
 import BusinessPage from './common/businesses';
 
-
 function NavBar() {
-  const {user, logout} = useAuth();
+  const {user, usersRole, logout} = useAuth();
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
-  console.log(user);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -37,6 +35,7 @@ function NavBar() {
     setIsLogoutModalOpen(false);
   };
 
+
   return(
     <>
     <nav className="bg-white shadow-md">
@@ -47,12 +46,15 @@ function NavBar() {
             <Link to="/medical" className="text-black hover:text-blue-600 transition duration-300">Medical</Link>
             <Link to="/beauty" className="text-black hover:text-blue-600 transition duration-300">Beauty</Link>
             <Link to="/fitness" className="text-black hover:text-blue-600 transition duration-300">Fitness</Link>
-
             {user ? (
               <>
                 {/* logged in */}
                 <span className="text-black">{user.name}</span>
-                <Link to="/service-providers/serviceDashboard" state={{role: 'service-provider'}} className="text-black hover:text-blue-600 transition duration-300">Dashboard</Link>
+                {usersRole === 'service-provider' ? (
+                  <Link to="/service-providers/serviceDashboard" className="text-black hover:text-blue-600 transition duration-300">Dashboard</Link>
+                ) : usersRole === 'user' ? (
+                  <Link to="/users/userDashboard" className="text-black hover:text-blue-600 transition duration-300">Dashboard</Link>
+                ) : null}
                 <Link to="/notifications" className="text-black hover:text-blue-600 transition duration-300">Notifications</Link>
                 <button onClick={() => setIsLogoutModalOpen(true)} className="text-black hover:text-blue-600 transition duration-300">Logout</button>
                 

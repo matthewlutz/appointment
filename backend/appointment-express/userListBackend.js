@@ -12,4 +12,16 @@ router.get('/users', async (req, res)=>{
     })
 })
 
+router.post("/users", async (req, res) =>{
+    const sql = "UPDATE users SET active = ? WHERE id = ?";
+    const {id, active} = req.body;
+    db.query(sql, id, active, (err, data) => {
+        if (err) {
+            console.error('Error querying the database:', err);
+            return res.status(500).json({ message: "backend login error" });
+        }
+        
+    })
+})
+
 module.exports = router;

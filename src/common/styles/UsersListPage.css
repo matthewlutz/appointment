@@ -71,3 +71,13 @@ tr:hover {
     background-color: darkred;
     border-color: darkred;
 }
+
+#errorMessage{
+    opacity: 0;
+    color: red;
+    background: lightpink;
+    border-color: #b24444;
+    border-width: thin;
+    padding: .1em;
+    text-align: center;
+}

@@ -14,15 +14,12 @@ function LoginPage() {
     const navigate = useNavigate();
     const errorMsg = document.getElementById("ErrorMsg");
 
-    //console.log(location.state);
     useEffect(() => {
-        //console.log("Role from state:", location.state?.role);
         setRole(location.state?.role || 'user');
     }, [location]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // Login logic
         console.log('E-mail:', email, 'Password:', password, 'Role:', role);
         try {
             const response = await fetch('http://localhost:3001/api/login', {
@@ -40,7 +37,7 @@ function LoginPage() {
             const data = await response.json();
             if(response.ok){
                 console.log('Response ok:', data.message);
-                login(data);
+                login(data, role);
                 if (role === 'service-provider') {
                     navigate('/service-providers/ServiceDashBoard'); // brings the service provider to the service provider dashboard
                 } else if (role === 'user') {

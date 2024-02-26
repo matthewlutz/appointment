@@ -14,6 +14,7 @@ function LoginPage() {
     const navigate = useNavigate();
     const errorMsg = document.getElementById("ErrorMsg");
 
+    
     useEffect(() => {
         setRole(location.state?.role || 'user');
     }, [location]);

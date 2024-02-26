@@ -53,11 +53,15 @@ function NavBar() {
               <>
                 {/* logged in */}
                 <span className="text-black">{user.name}</span>
+
                 {usersRole === 'service-provider' ? (
                   <Link to="/service-providers/serviceDashboard" className="text-black hover:text-blue-600 transition duration-300">Dashboard</Link>
                 ) : usersRole === 'user' ? (
                   <Link to="/users/userDashboard" className="text-black hover:text-blue-600 transition duration-300">Dashboard</Link>
                 ) : null}
+
+
+                <Link to="/serviceProviders/serviceDashboard" className="text-black hover:text-blue-600 transition duration-300">Dashboard</Link>
                 <Link to="/notifications" className="text-black hover:text-blue-600 transition duration-300">Notifications</Link>
                 <button onClick={() => setIsLogoutModalOpen(true)} className="text-black hover:text-blue-600 transition duration-300">Logout</button>
                 
@@ -102,6 +106,7 @@ function App() {
         <Route path="/beauty" element={<BeautyPage />} />
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/users" element={<UsersList/>}/>
+        <Route path="/businesses" element={<BusinessPage />} />
       </Routes>
     </BrowserRouter>
   </AuthProvider>

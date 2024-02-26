@@ -69,11 +69,13 @@ function UsersList(){
             </select>
             <table>
                 <thead>
+                    <tr>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>User Type</th>
                     <th>Activate/Deactivate User</th>
+                    </tr>    
                 </thead>
                 <tbody>
                     {filteredData.map((d, i) => (

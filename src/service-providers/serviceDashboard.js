@@ -11,7 +11,7 @@ function ServiceDashboard() {
     const [name, setName] = useState('');
     const [appointments, setAppointments] = useState([]);
 
-    /*
+    
     useEffect(() => {
         const fetchProfile = async () => {
             try{
@@ -34,7 +34,7 @@ function ServiceDashboard() {
             }
         };
         fetchProfile();
-    }, []); */
+    }, []); 
 
 
 

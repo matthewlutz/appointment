@@ -1,4 +1,7 @@
 import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
 
 function CategorySelector({ categories, selectedCategory, onSelectCategory }) {
     return (
@@ -15,7 +18,7 @@ function CategorySelector({ categories, selectedCategory, onSelectCategory }) {
                         key={category}
                         onClick={() => onSelectCategory(category)}
                         style={{ backgroundImage: bgImages[category] }}
-                        className={`w-1/3 h-32 bg-cover bg-center bg-no-repeat text-lg font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-300 ${
+                        className={`w-1/3 h-20 bg-cover bg-center bg-no-repeat text-lg font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-300 ${
                         selectedCategory === category ? 'bg-blue-500 text-white' : 'text-gray-700'
                         }`}
                     >
@@ -31,12 +34,30 @@ function CategorySelector({ categories, selectedCategory, onSelectCategory }) {
 function BusinessPage() {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [businesses, setBusinesses] = useState([]);
+    const navigate = useNavigate();
 
     const categories = ['Medical', 'Fitness', 'Health'];
 
     const handleSelectCategory = (category) => {
         setSelectedCategory(category);
         console.log(`Fetching businesses for category: ${category}`);
+
+        fetch('http://localhost:3001/api/business-details')
+          .then(res => res.json())
+          .then(allBusinesses => {
+              console.log("All businesses:", allBusinesses);
+              const filteredBusinesses = allBusinesses.filter(business => business.serviceType.toLowerCase() === category.toLowerCase());
+              console.log(`Filtered businesses for category '${category}':`, filteredBusinesses);
+              setBusinesses(filteredBusinesses);
+          })
+        .catch(err => console.error("Failed to fetch businesses:", err));
+    }
+
+    const handleClick = (businessID) => {
+      console.log("navigating to: ", businessID);
+
+      navigate(`/common/viewBusiness/${businessID}`);
+
     }
 
 
@@ -51,28 +72,34 @@ function BusinessPage() {
               placeholder="Search services or businesses"
               className="w-full h-14 px-5 pr-10 rounded-full text-sm focus:outline-none"
             />
-          </div>
+          </div >
     
           <CategorySelector
             categories={categories}
             selectedCategory={selectedCategory}
             onSelectCategory={handleSelectCategory}
 
-            />
+          />
     
           
           {/* Business Listings */}
           <div className="flex-grow overflow-auto">
             {selectedCategory && (
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-xl font-semibold text-center mb-4">Businesses in {selectedCategory}</h2>
-                {/* Here you would map through your businesses and create components/cards for each one */}
-                {businesses.map((business) => (
-                  <div key={business.id} className="bg-white p-6 shadow rounded-lg mb-4">
-                    <h3 className="text-lg font-bold">{business.name}</h3>
-                    {/* Other business details */}
-                  </div>
-                ))}
+                <h2 className="text-2xl font-semibold text-center mb-6">Businesses in {selectedCategory}</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {businesses.map((business) => (
+                    <div key={business.id} className="bg-white p-6 shadow-lg rounded-lg mb-4 transform transition duration-500 hover:scale-105 cursor-pointer" onClick={() => handleClick(business.id)}>
+                      <h3 className="text-lg font-bold mb-2">{business.businessName}</h3>
+                      <p className="text-gray-700 mb-4">{business.businessDescription}</p>
+                      <p className="text-sm font-medium text-gray-600">Service Type: {business.serviceType}</p>
+                      <p className="text-sm font-medium text-gray-600">Duration: {business.appointmentDuration} - Price: ${business.appointmentPrice}</p>
+                      <p className="text-sm font-medium text-gray-600">Address: {business.businessAddress}</p>
+                      <p className="text-sm font-medium text-gray-600">Email: {business.email} - Phone: {business.phone}</p>
+                      <a href={business.website} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700 transition duration-300">Visit Website</a>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>

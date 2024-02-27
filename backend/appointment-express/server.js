@@ -6,12 +6,15 @@ const app = express();
 const registrationRouter = require('./regBackend');
 const loginRouter = require('./backendLogin');
 const UsersListRouter = require('./userListBackend');
+const businessDetailsRouter = require('./businessDetails');
 app.use(express.json());
 app.use(cors());
 
 app.use('/api', registrationRouter);
 app.use('/api', loginRouter);
 app.use('/api', UsersListRouter);
+app.use('/api', businessDetailsRouter);
+
 
 
 

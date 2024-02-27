@@ -9,7 +9,7 @@ import FitnessPage from './FitnessPage';
 import MedicalPage from './MedicalPage';
 import BeautyPage from './BeautyPage';
 import RegistrationPage from './common/RegistrationPage';
-import UsersList from './admin/UsersList';
+//import UsersList from './admin/UsersList';
 import BusinessDetailsForm from './service-providers/BusinessDetailsForm';
 import ServiceDashboard from './service-providers/serviceDashboard';
 import { AuthProvider, useAuth } from './Authenticator';
@@ -20,6 +20,7 @@ import AppointmentHistory from './service-providers/AppointmentHistory';
 import ViewAppointments from './service-providers/viewAppointments';
 import UserDashboard from './users/userDashboard';
 import BusinessPage from './common/businesses';
+import ViewBusiness from './common/viewBusiness';
 
 function NavBar() {
   const {user, usersRole, logout} = useAuth();
@@ -36,6 +37,7 @@ function NavBar() {
     setIsLogoutModalOpen(false);
   };
 
+  console.log(`User Role: ${usersRole}`);
 
   return(
     <>
@@ -44,10 +46,7 @@ function NavBar() {
         <div className="flex justify-between items-center py-6">
           <Link to='/' className="text-3xl font-bold text-black hover:text-blue-600 transition duration-300">Appointment Booking System</Link>
           <div className="hidden md:flex space-x-4">
-            <Link to="/medical" className="text-black hover:text-blue-600 transition duration-300">Medical</Link>
-            <Link to="/beauty" className="text-black hover:text-blue-600 transition duration-300">Beauty</Link>
-            <Link to="/fitness" className="text-black hover:text-blue-600 transition duration-300">Fitness</Link>
-            <Link to="/users" className='text-black hover:text-blue-600 transition duration-300'>usersList</Link>
+            {/*<Link to="/users" className='text-black hover:text-blue-600 transition duration-300'>usersList</Link>*/}
 
             {user ? (
               <>
@@ -60,8 +59,6 @@ function NavBar() {
                   <Link to="/users/userDashboard" className="text-black hover:text-blue-600 transition duration-300">Dashboard</Link>
                 ) : null}
 
-
-                <Link to="/serviceProviders/serviceDashboard" className="text-black hover:text-blue-600 transition duration-300">Dashboard</Link>
                 <Link to="/notifications" className="text-black hover:text-blue-600 transition duration-300">Notifications</Link>
                 <button onClick={() => setIsLogoutModalOpen(true)} className="text-black hover:text-blue-600 transition duration-300">Logout</button>
                 
@@ -92,6 +89,8 @@ function App() {
     <BrowserRouter>
       <NavBar /> {/* Use the NavBar component */}
       <Routes>
+        <Route path="/common/viewBusiness/:businessId" element={<ViewBusiness />} />
+        <Route path="/common/businesses" element={<BusinessPage />} />
         <Route path="/users/userDashboard" element={<UserDashboard />} />
         <Route path="/service-providers/viewAppointments" element={<ViewAppointments />} /> 
         <Route path="/service-providers/AppointmentHistory" element={<AppointmentHistory />} />
@@ -105,7 +104,7 @@ function App() {
         <Route path="/medical" element={<MedicalPage />} />
         <Route path="/beauty" element={<BeautyPage />} />
         <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/users" element={<UsersList/>}/>
+        {/*<Route path="/users" element={<UsersList/>}/>*/}
         <Route path="/businesses" element={<BusinessPage />} />
       </Routes>
     </BrowserRouter>

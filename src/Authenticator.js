@@ -10,7 +10,7 @@ export const AuthProvider = ({children}) => {
         return storedUser ? JSON.parse(storedUser) : null;
     });
     const [usersRole, setRole] = useState(() => {
-        return localStorage.getItem('role') || '';
+        return localStorage.getItem('role') || null;
     });
 
 
@@ -19,7 +19,6 @@ export const AuthProvider = ({children}) => {
         setRole(role);
         localStorage.setItem('user', JSON.stringify(userData));
         localStorage.setItem('role', role);
-
     }
 
     const logout = () => {

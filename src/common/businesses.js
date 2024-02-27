@@ -32,9 +32,21 @@ function CategorySelector({ categories, selectedCategory, onSelectCategory }) {
 
 
 function BusinessPage() {
-    const [selectedCategory, setSelectedCategory] = useState('');
-    const [businesses, setBusinesses] = useState([]);
-    const navigate = useNavigate();
+
+const [selectedCategory, setSelectedCategory] = useState('');
+const [businesses, setBusinesses] = useState([]);
+const [searchInput, setSearchInput] = useState(''); // Define the state for search input
+const navigate = useNavigate();
+    
+
+  const handleSearchInputChange = (event) => {
+    setSearchInput(event.target.value);
+    // You can also perform a search operation here if needed
+    console.log(event.target.value); // This will log what the user types in real-time
+
+    
+};
+
 
     const categories = ['Medical', 'Fitness', 'Health'];
 
@@ -68,10 +80,12 @@ function BusinessPage() {
             <h1 className="text-5xl font-bold text-center mb-6">Find the Perfect Fit</h1>
             <p className="text-2xl mb-6 text-center">Discover professionals near you</p>
             <input
-              type="text"
-              placeholder="Search services or businesses"
-              className="w-full h-14 px-5 pr-10 rounded-full text-sm focus:outline-none"
-            />
+                type="text"
+                placeholder="Search services or businesses"
+                className="w-full h-14 px-5 pr-10 rounded-full text-sm focus:outline-none text-black" // Added text-black for black font color
+                value={searchInput}
+                onChange={handleSearchInputChange}
+          />
           </div >
     
           <CategorySelector

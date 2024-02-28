@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {Link, useParams, useLocation, useNavigate} from 'react-router-dom';
 import { useAuth } from './../Authenticator';
 import './styles/LoginPage.css';
+import { jwtDecode } from "jwt-decode";
+
 //import { use } from '../backend/appointment-express/regBackend';
 
 function LoginPage() {
@@ -36,9 +38,11 @@ function LoginPage() {
             });
 
             const data = await response.json();
+            const decodedToken = jwtDecode(data.token);
+            console.log('decoded token: ', decodedToken);
             if(response.ok){
                 console.log('Response ok:', data.message);
-                login(data, role);
+                login(decodedToken.userId, role);
                 if (role === 'service-provider') {
                     navigate('/service-providers/ServiceDashBoard'); // brings the service provider to the service provider dashboard
                 } else if (role === 'user') {

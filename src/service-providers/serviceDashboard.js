@@ -5,6 +5,7 @@ import FullCalendar from '@fullcalendar/react';
 import { Link } from 'react-router-dom';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import Hours from './serviceHours';
 import './../index.css'; 
 
 function ServiceDashboard() {
@@ -15,11 +16,10 @@ function ServiceDashboard() {
     useEffect(() => {
         const fetchProfile = async () => {
             try{
-                const response = await fetch('/api/service-provider/profile', {
+                const response = await fetch('/api/name', {
                     method: 'GET',
                     headers: {
-                      // Include authorization header if needed (e.g., bearer token)
-                      'Authorization': 'Bearer your_token_here',
+                        'Content-Type': 'application/json',
                     },
                   });
 
@@ -52,6 +52,9 @@ function ServiceDashboard() {
                 <Link to='/service-providers/BusinessDetailsForm' className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-purple-500 hover:bg-purple-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Edit Services
                 </Link>
+                <Link to='/service-providers/serviceHours' className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-amber-400 hover:bg-amber-500 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                    Edit Hours
+                </Link>
                 <Link to='/service-providers/AppointmentHistory' className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-red-500 hover:bg-red-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Appointment History
                 </Link>
@@ -66,23 +69,23 @@ function ServiceDashboard() {
 
 
             {/* Main content */}
-            <div className="w-4/5 p-5">
+            <div className="w-full p-5 dark:bg-gray-800 dark:text-white">
                 <h2 className="text-2xl font-semibold mb-5">Welcome, {name}</h2>
                 <h2 className="text-xl font-semibold mb-5">Today's Appointments</h2>
-                <div className="w-full max-w-sm">
-                <FullCalendar
-                    plugins={[timeGridPlugin]}
-                    initialView="timeGridDay"
-                    slotMinTime="09:00:00"
-                    slotMaxTime="17:00:00"
-                    height="auto"
-                    slotDuration="00:30:00"
-                    nowIndicator={true}
-                    allDaySlot={false}
-                    expandRows={true}
-                    stickyHeaderDates={true}
-                    themeSystem='bootstrap'                  
-                />
+                <div className="w-full w-2/5"> 
+                    <FullCalendar
+                        plugins={[timeGridPlugin]}
+                        initialView="timeGridDay"
+                        slotMinTime="09:00:00"
+                        slotMaxTime="17:00:00"
+                        height="auto"
+                        slotDuration="00:30:00"
+                        nowIndicator={true}
+                        allDaySlot={false}
+                        expandRows={true}
+                        stickyHeaderDates={true}
+                        themeSystem='bootstrap' // Consider customizing further for dark theme
+                    />
                 </div>
             </div>
         </div>

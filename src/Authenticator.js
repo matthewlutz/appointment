@@ -13,7 +13,6 @@ export const AuthProvider = ({children}) => {
         return localStorage.getItem('role') || null;
     });
 
-
     const login = (userData, role ) => {
         setUser(userData);
         setRole(role);

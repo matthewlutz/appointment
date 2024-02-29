@@ -97,6 +97,7 @@ function App() {
     <BrowserRouter>
       <NavBar /> {/* Use the NavBar component */}
       <Routes>
+        <Route path="/users/ViewUserAppointments" element={<ViewUserAppointments />} />
         <Route path="/service-providers/serviceHours" element={<Hours />} />
         <Route path="/common/viewBusiness/:businessId" element={<ViewBusiness />} />
         <Route path="/common/businesses" element={<BusinessPage />} />

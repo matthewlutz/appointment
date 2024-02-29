@@ -7,6 +7,7 @@ const registrationRouter = require('./regBackend');
 const loginRouter = require('./backendLogin');
 const UsersListRouter = require('./userListBackend');
 const businessDetailsRouter = require('./businessDetails');
+const bookAppointmentRouter = require('./bookDetails');
 const getUserAppointmentsRouter = require('./GetUserAppointments');
 const getSerciveAppointmentsRouter = require('./GetServiceAppointments');
 
@@ -17,8 +18,6 @@ app.use('/api', registrationRouter);
 app.use('/api', loginRouter);
 app.use('/api', UsersListRouter);
 app.use('/api', businessDetailsRouter);
-app.use('/api', getUserAppointmentsRouter);
-app.use('/api', getSerciveAppointmentsRouter);
 
 
 

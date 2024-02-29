@@ -21,6 +21,8 @@ import ViewAppointments from './service-providers/viewServiceAppointments';
 import UserDashboard from './users/userDashboard';
 import BusinessPage from './common/businesses';
 import ViewBusiness from './common/viewBusiness';
+import Hours from './service-providers/serviceHours';
+import { UserProvider } from './userContext';
 import ViewUserAppointments from './users/ViewUserAppointments'
 
 function NavBar() {
@@ -91,9 +93,11 @@ function NavBar() {
 function App() {   
   return (
     <AuthProvider>
+    <UserProvider>
     <BrowserRouter>
       <NavBar /> {/* Use the NavBar component */}
       <Routes>
+        <Route path="/service-providers/serviceHours" element={<Hours />} />
         <Route path="/common/viewBusiness/:businessId" element={<ViewBusiness />} />
         <Route path="/common/businesses" element={<BusinessPage />} />
         <Route path="/users/userDashboard" element={<UserDashboard />} />
@@ -111,9 +115,9 @@ function App() {
         <Route path="/register" element={<RegistrationPage />} />
         {/*<Route path="/users" element={<UsersList/>}/>*/}
         <Route path="/businesses" element={<BusinessPage />} />
-        <Route path="users/ViewUserAppointments" element={<ViewUserAppointments/>}/>
       </Routes>
     </BrowserRouter>
+    </UserProvider>
   </AuthProvider>
   );
 }

@@ -57,5 +57,46 @@ router.get('/business-view/:businessId', async (req, res) => {
     });
 });
 
+
+router.post('/hours', async (req, res) => {
+    try {
+        const { businessId, hours } = req.body;
+
+        // Begin transaction
+        await db.beginTransaction();
+
+        // Prepare statements for inserting or updating hours
+        const queries = Object.entries(hours).map(([day, { start: open_time, end: close_time, closed }], index) => {
+            // Convert day string to day number, assuming Sunday = 0, Monday = 1, etc.
+            const dayNumber = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'].indexOf(day.toLowerCase());
+            if (dayNumber === -1) throw new Error('Invalid day of week');
+
+            // Generate the SQL for each day's hours
+            const query = `
+                INSERT INTO business_hours (business_id, day, open_time, close_time) 
+                VALUES (?, ?, ?, ?) 
+                ON DUPLICATE KEY UPDATE 
+                open_time = VALUES(open_time), close_time = VALUES(close_time);
+            `;
+            return db.query(query, [businessId, dayNumber, closed ? null : open_time, closed ? null : close_time]);
+        });
+
+        // Execute all queries
+        await Promise.all(queries);
+
+        // Commit transaction
+        await db.commit();
+
+        res.json({ message: 'Business hours updated successfully' });
+
+    } catch (error) {
+        // Rollback transaction in case of error
+        await db.rollback();
+
+        console.error('Failed to update business hours:', error);
+        res.status(500).json({ message: 'Error updating business hours' });
+    }
+})
+
 module.exports = router;
 

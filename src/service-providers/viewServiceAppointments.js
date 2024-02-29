@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import {useAuth} from '../Authenticator';
 
-function ViewAppointments(){
+function ViewServiceAppointments(){
     const [data, setData] = useState([])
-    
 
+    const {user} = useAuth();
+    const userId = user;
     try {
-        const response = fetch('http://localhost:3001/api/viewAppointments', {
+        const response = fetch('http://localhost:3001/api/viewServiceAppointments', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                businessId, 
+                userId, 
             }),
         });
-
+        console.log(response);
         setData(response.json());
         if(response.ok){
             console.log('Response ok:', data.message);
@@ -40,9 +42,11 @@ function ViewAppointments(){
                     {data.map((d, i) => (
                         <tr key = {i}>
                             <td>{d.id}</td>
-                            <td>{d.name}</td>
-                            <td>{d.email}</td>
-                            <td>{d.role}</td>
+                            <td>{d.userId}</td>
+                            <td>{d.businessId}</td>
+                            <td>{d.appointmentStart}</td>
+                            <td>{d.appointmentEnd}</td>
+                            <td>{d.Purpose}</td>
                             <td><button id="cancelButton">Cancel?</button></td>
 
                         </tr>
@@ -54,4 +58,4 @@ function ViewAppointments(){
 
 }
 
-export default ViewAppointments;
+export default ViewServiceAppointments;

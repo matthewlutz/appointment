@@ -41,7 +41,7 @@ function ViewBusiness() {
             <li><strong>Website:</strong> <a href={business.website} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">{business.website}</a></li>
           </ul>
           {/* Button or link to book an appointment */}
-          <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-200">Book an Appointment</button>
+          <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-200" >Book an Appointment</button>
         </div>
       </div>
     </div>

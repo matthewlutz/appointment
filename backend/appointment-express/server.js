@@ -7,7 +7,9 @@ const registrationRouter = require('./regBackend');
 const loginRouter = require('./backendLogin');
 const UsersListRouter = require('./userListBackend');
 const businessDetailsRouter = require('./businessDetails');
-const getAppointmentsRouter = require('./getAppointments');
+const getUserAppointmentsRouter = require('./GetUserAppointments');
+const getSerciveAppointmentsRouter = require('./GetServiceAppointments');
+
 app.use(express.json());
 app.use(cors());
 
@@ -15,7 +17,8 @@ app.use('/api', registrationRouter);
 app.use('/api', loginRouter);
 app.use('/api', UsersListRouter);
 app.use('/api', businessDetailsRouter);
-app.use('/api', getAppointmentsRouter);
+app.use('/api', getUserAppointmentsRouter);
+app.use('/api', getSerciveAppointmentsRouter);
 
 
 

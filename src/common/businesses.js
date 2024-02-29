@@ -48,7 +48,7 @@ const navigate = useNavigate();
 };
 
 
-    const categories = ['Medical', 'Fitness', 'Health'];
+    const categories = ['Medical', 'Fitness', 'Beauty'];
 
     const handleSelectCategory = (category) => {
         setSelectedCategory(category);

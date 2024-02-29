@@ -1,29 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate  } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import BookingModal from './BookingModal';
 
 
+
 function ViewBusiness() {
-  //onst location = useLocation();
-  //const business = location.state?.business;
   let { businessId } = useParams();
   const [business, setBusiness] = useState(null);
+  const [selectedServiceType, setSelectedServiceType] = useState(''); // State to capture selected service type
+  const [bookingDetails, setBookingDetails] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
-
-  const handleBook =  async(bookingDetails) => {
-    console.log('Booking details:', bookingDetails);
-  }
 
   useEffect(() => {
     fetch(`http://localhost:3001/api/business-view/${businessId}`)
       .then(res => res.json())
-      .then(data => {
-        // Assuming the backend returns the business details directly
-        setBusiness(data);
-      })
+      .then(data => setBusiness(data))
       .catch(err => console.error("Failed to fetch business details:", err));
   }, [businessId]);
+
+  const handleBook = async(details) => {
+    console.log('Booking details:', details);
+    setBookingDetails(details);
+  }
+
+  
+
+  // Example services - replace with actual services from your backend
+  const services = ['Service'];
 
   if (!business) {
     return <div>Loading...</div>;
@@ -42,24 +46,38 @@ function ViewBusiness() {
         <div>
           <h3 className="text-xl font-semibold mb-2">About the Business</h3>
           <p className="text-gray-700 mb-4">{business.businessDescription}</p>
-          <ul className="text-gray-700">
-            <li><strong>Service Type:</strong> {business.serviceType}</li>
-            <li><strong>Duration:</strong> {business.appointmentDuration}</li>
-            <li><strong>Price:</strong> ${business.appointmentPrice}</li>
-            <li><strong>Address:</strong> {business.businessAddress}</li>
-            <li><strong>Email:</strong> {business.email}</li>
-            <li><strong>Phone:</strong> {business.phone}</li>
-            <li><strong>Website:</strong> <a href={business.website} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">{business.website}</a></li>
-          </ul>
-          {/* Button or link to book an appointment */}
-<<<<<<< HEAD
-          <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-200" >Book an Appointment</button>
-=======
+          {/* Services Section */}
+          <div className="mb-4">
+            <h4 className="font-semibold">Services:</h4>
+            {services.map((service, index) => (
+              <button key={index} onClick={() => setSelectedServiceType(service)} className="block text-left p-2 w-full text-gray-700 hover:bg-gray-100">
+                {service}
+              </button>
+            ))}
+          </div>
           <button onClick={() => setIsModalOpen(true)} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-200">Book an Appointment</button>
           <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onBook={handleBook} businessId={businessId}/>
->>>>>>> ccf43f10eca071c6356b1681b6c05ad3a78dd09e
         </div>
       </div>
+      {isModalOpen && (
+        <BookingModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onBook={handleBook}
+          businessId={businessId}
+          selectedServiceType={selectedServiceType} // Pass the selected service type to BookingModal
+        />
+      )}
+      {bookingDetails && (
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-100 p-4 border-t-2 border-gray-200">
+          <h4 className="text-lg font-semibold">Appointment Details</h4>
+          <ul>
+            <li><strong>Date:</strong> {bookingDetails.date}</li>
+            <li><strong>Time:</strong> {bookingDetails.time}</li>
+            <li><strong>Service:</strong> {bookingDetails.serviceType || selectedServiceType}</li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

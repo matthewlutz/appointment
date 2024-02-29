@@ -115,6 +115,7 @@ function App() {
         <Route path="/register" element={<RegistrationPage />} />
         {/*<Route path="/users" element={<UsersList/>}/>*/}
         <Route path="/businesses" element={<BusinessPage />} />
+        <Route path="/users/ViewUserAppointments" element={<ViewUserAppointments/>}/>
       </Routes>
     </BrowserRouter>
     </UserProvider>

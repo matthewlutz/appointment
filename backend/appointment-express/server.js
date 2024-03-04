@@ -8,6 +8,9 @@ const loginRouter = require('./backendLogin');
 const UsersListRouter = require('./userListBackend');
 const businessDetailsRouter = require('./businessDetails');
 const bookAppointmentRouter = require('./bookDetails');
+const getUserAppointmentsRouter = require('./GetUserAppointments');
+const getSerciveAppointmentsRouter = require('./GetServiceAppointments');
+
 const appointmentRouter = require('./appointments');
 const addAppointmentRouter = require('./addAppointments');
 app.use(express.json());

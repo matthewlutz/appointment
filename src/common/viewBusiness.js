@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate  } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import BookingModal from './BookingModal';
 
 
+
 function ViewBusiness() {
-  //onst location = useLocation();
-  //const business = location.state?.business;
   let { businessId } = useParams();
   const [business, setBusiness] = useState(null);
+  const [selectedServiceType, setSelectedServiceType] = useState(''); // State to capture selected service type
+  const [bookingDetails, setBookingDetails] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const [appointmentSlots, setAppointmentSlots] = useState('');
@@ -19,10 +20,7 @@ function ViewBusiness() {
   useEffect(() => {
     fetch(`http://localhost:3001/api/business-view/${businessId}`)
       .then(res => res.json())
-      .then(data => {
-        // Assuming the backend returns the business details directly
-        setBusiness(data);
-      })
+      .then(data => setBusiness(data))
       .catch(err => console.error("Failed to fetch business details:", err));
 
     fetch(`http://localhost:3001/api/appointmentSlots/${businessId}`)
@@ -32,6 +30,16 @@ function ViewBusiness() {
      })
      .catch(err => console.error("Failed to fetch appointment slots:", err));
   }, [businessId]);
+
+  const handleBook = async(details) => {
+    console.log('Booking details:', details);
+    setBookingDetails(details);
+  }
+
+  
+
+  // Example services - replace with actual services from your backend
+  const services = ['Service'];
 
   if (!business) {
     return <div>Loading...</div>;
@@ -47,49 +55,41 @@ function ViewBusiness() {
         <div className="overflow-hidden rounded-lg">
           <img src={business.image || 'default-image-url.jpg'} alt={business.businessName} className="w-full h-full object-cover object-center transition duration-300 ease-in-out transform hover:scale-105" />
         </div>
-        <div className="flex flex-col justify-between">
-          <div>
-            <h3 className="text-2xl font-semibold mb-4 text-gray-800">About the Business</h3>
-            <p className="text-gray-700 mb-4">{business.businessDescription}</p>
-            <ul className="text-gray-700 space-y-2">
-              <li><strong>Service Type:</strong> {business.serviceType}</li>
-              <li><strong>Duration:</strong> {business.appointmentDuration}</li>
-              <li><strong>Price:</strong> ${business.appointmentPrice}</li>
-              <li><strong>Address:</strong> {business.businessAddress}</li>
-              <li><strong>Email:</strong> {business.email}</li>
-              <li><strong>Phone:</strong> {business.phone}</li>
-              <li><strong>Website:</strong> <a href={business.website} className="text-blue-500 hover:text-blue-700 transition duration-300" target="_blank" rel="noopener noreferrer">{business.website}</a></li>
-            </ul>
+        <div>
+          <h3 className="text-xl font-semibold mb-2">About the Business</h3>
+          <p className="text-gray-700 mb-4">{business.businessDescription}</p>
+          {/* Services Section */}
+          <div className="mb-4">
+            <h4 className="font-semibold">Services:</h4>
+            {services.map((service, index) => (
+              <button key={index} onClick={() => setSelectedServiceType(service)} className="block text-left p-2 w-full text-gray-700 hover:bg-gray-100">
+                {service}
+              </button>
+            ))}
           </div>
-          <button onClick={() => setIsModalOpen(true)} className="self-start bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300 mt-4 focus:outline-none focus:ring-2 focus:ring-blue-500">Book an Appointment</button>
+          <button onClick={() => setIsModalOpen(true)} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-200">Book an Appointment</button>
+          <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onBook={handleBook} businessId={businessId}/>
         </div>
       </div>
-      <div className="mt-8">
-        <h3 className="text-2xl font-semibold mb-4 text-gray-800">Available Appointment Slots</h3>
-        {appointmentSlots.length > 0 ? (
-          <ul className="space-y-4">
-            {appointmentSlots.map((slot) => (
-              <li key={slot.id} className="p-4 bg-gray-50 rounded-md shadow">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <p className="font-medium text-gray-800"><strong>Start:</strong> {slot.appointmentStart}</p>
-                    <p className="font-medium text-gray-600"><strong>For:</strong> {slot.Purpose}</p>
-                  </div>
-                  <button
-                    onClick={() => setIsModalOpen(true)}
-                    className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-500"
-                  >
-                    Book Slot
-                  </button>
-                </div>
-              </li>
-            ))}
+      {isModalOpen && (
+        <BookingModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onBook={handleBook}
+          businessId={businessId}
+          selectedServiceType={selectedServiceType} // Pass the selected service type to BookingModal
+        />
+      )}
+      {bookingDetails && (
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-100 p-4 border-t-2 border-gray-200">
+          <h4 className="text-lg font-semibold">Appointment Details</h4>
+          <ul>
+            <li><strong>Date:</strong> {bookingDetails.date}</li>
+            <li><strong>Time:</strong> {bookingDetails.time}</li>
+            <li><strong>Service:</strong> {bookingDetails.serviceType || selectedServiceType}</li>
           </ul>
-        ) : (
-          <p className="text-gray-700">No available slots.</p>
-        )}
-      </div>
-      <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onBook={handleBook} businessId={businessId}/>
+        </div>
+      )}
     </div>
   );
 }

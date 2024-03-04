@@ -12,7 +12,7 @@ router.get('/users', async (req, res)=>{
     })
 })
 
-router.post("/users", async (req, res) =>{
+/*router.post("/users", async (req, res) =>{
     const sql = "UPDATE users SET active = ? WHERE id = ?";
     const {id, active} = req.body;
     db.query(sql, id, active, (err, data) => {
@@ -22,6 +22,6 @@ router.post("/users", async (req, res) =>{
         }
         
     })
-})
+})*/
 
 module.exports = router;

@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
 import {Link, useNavigate, useLocation} from "react-router-dom";
 import './styles/Registration.css';
+import { jwtDecode } from "jwt-decode";
+import { useAuth } from './../Authenticator';
+import LoginPage from './LoginPage';
+import { useUser } from './../userContext';
 
 
 function RegistrationPage (){
@@ -10,10 +14,11 @@ function RegistrationPage (){
     const [regPassword, setPassword] = useState('');
     const [regConfirmPassword, setConfirmPassword] = useState('');
     const location = useLocation();
+    const { login } = useAuth();
     const [role, setRole] = useState(location.state?.role || 'user'); 
     const navigate = useNavigate();
+    const { saveEmail } = useUser();
     const title = role === 'service-provider' ? 'Register as Service Provider' : 'Register as User';
-    
 
     const emailRegex = /\S+@\S+\.\S+/ // email validation regex
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; //password validation regex
@@ -76,9 +81,13 @@ function RegistrationPage (){
                 body: JSON.stringify(userData)
             });
 
-            const data = await response.json();
+            const data = await response.json();;
+            const decodedToken = jwtDecode(data.token);
             if(response.ok){
                 console.log(data.message + ' ' + data.role);
+                login(decodedToken.userId, role);
+                saveEmail(regEmail);
+                localStorage.setItem('userEmail', regEmail);
                 if(role === 'service-provider'){
                     navigate('/service-providers/BusinessDetailsForm');
                 }else if (role === 'user'){

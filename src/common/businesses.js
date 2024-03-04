@@ -33,10 +33,10 @@ function CategorySelector({ categories, selectedCategory, onSelectCategory }) {
 
 function BusinessPage() {
 
-const [selectedCategory, setSelectedCategory] = useState('');
-const [businesses, setBusinesses] = useState([]);
-const [searchInput, setSearchInput] = useState(''); // Define the state for search input
-const navigate = useNavigate();
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [businesses, setBusinesses] = useState([]);
+  const [searchInput, setSearchInput] = useState(''); // Define the state for search input
+  const navigate = useNavigate();
     
 
   const handleSearchInputChange = (event) => {
@@ -48,7 +48,7 @@ const navigate = useNavigate();
 };
 
 
-    const categories = ['Medical', 'Fitness', 'Health'];
+    const categories = ['Medical', 'Fitness', 'Beauty'];
 
     const handleSelectCategory = (category) => {
         setSelectedCategory(category);

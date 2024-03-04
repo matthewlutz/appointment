@@ -6,14 +6,14 @@ const router = express.Router();
 
 router.post('/business-form', async (req, res) => {
     const { businessName, serviceType, appointmentDuration, appointmentPrice, businessAddress,
-         businessDescription, email, phone, website } = req.body;
+         businessDescription, qualifications, email, phone, website } = req.body;
 
     const query = ` 
         INSERT INTO BusinessDetails
-        (businessName, serviceType, appointmentDuration, appointmentPrice, businessAddress, businessDescription, email, phone, website)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        (businessName, serviceType, appointmentDuration, appointmentPrice, businessAddress, businessDescription, qualifications, email, phone, website)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
-    db.query(query, [businessName, serviceType, appointmentDuration, appointmentPrice, businessAddress, businessDescription, email, phone, website], (error, results) => {
+    db.query(query, [businessName, serviceType, appointmentDuration, appointmentPrice, businessAddress, businessDescription, qualifications, email, phone, website], (error, results) => {
         if (error) {
             console.error('Failed to insert business details:', error);
             return res.status(500).send('Error saving business details');
@@ -34,6 +34,8 @@ router.get('/business-details', async (req, res) => {
         res.json(results);
     });
 });
+
+
 
 router.get('/business-view/:businessId', async (req, res) => {
     const { businessId } = req.params; // Access the businessId parameter from the URL

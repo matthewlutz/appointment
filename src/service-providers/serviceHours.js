@@ -72,6 +72,9 @@ function Hours(){
         <div className="min-h-screen ripple-background animated-background py-10">
             <div className="container max-w-4xl mx-auto px-4">
                 <div className="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
+                    <button onClick={() => navigate(-1)} className="mb-5 bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300 transition duration-200 ease-in-out">
+                        ← Back
+                    </button>
                     <h1 className="text-xl font-semibold leading-tight text-gray-900">Business Hours</h1>
                     <p className="mt-1 text-sm text-gray-600">Set the hours during which your business will be open.</p>
 

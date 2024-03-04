@@ -23,6 +23,7 @@ import BusinessPage from './common/businesses';
 import ViewBusiness from './common/viewBusiness';
 import Hours from './service-providers/serviceHours';
 import { UserProvider } from './userContext';
+import AddAppointment from './service-providers/addAppointment';
 
 
 function NavBar() {
@@ -97,6 +98,7 @@ function App() {
         <Route path="/common/viewBusiness/:businessId" element={<ViewBusiness />} />
         <Route path="/common/businesses" element={<BusinessPage />} />
         <Route path="/users/userDashboard" element={<UserDashboard />} />
+        <Route path="/service-providers/addAppointment" element={<AddAppointment />} /> 
         <Route path="/service-providers/viewAppointments" element={<ViewAppointments />} /> 
         <Route path="/service-providers/AppointmentHistory" element={<AppointmentHistory />} />
         <Route path="/service-providers/appointmentTrends" element={<AppointmentTrends />} />

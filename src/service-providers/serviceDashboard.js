@@ -46,8 +46,11 @@ function ServiceDashboard() {
                 <button className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-blue-700 hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Home
                 </button>
+                <Link to='/service-providers/addAppointment' className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-emerald-800 hover:bg-emerald-900 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                    Add Appointment
+                </Link>
                 <Link to='/service-providers/viewAppointments' className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-green-500 hover:bg-green-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-                    Appointments
+                    Current Appointments
                 </Link>
                 <Link to='/service-providers/BusinessDetailsForm' className="block text-left w-full text-white font-semibold rounded py-2 px-4 mb-3 bg-purple-500 hover:bg-purple-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Edit Services
@@ -70,7 +73,7 @@ function ServiceDashboard() {
 
             {/* Main content */}
             <div className="w-full p-5 dark:bg-gray-800 dark:text-white">
-                <h2 className="text-2xl font-semibold mb-5">Welcome, {name}</h2>
+                <h2 className="text-2xl font-semibold mb-5">Welcome {name}</h2>
                 <h2 className="text-xl font-semibold mb-5">Today's Appointments</h2>
                 <div className="w-full w-2/5"> 
                     <FullCalendar

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './../index.css';
 
-function ViewAppointments(){
+function UserAppointment(){
     const [appointments, setAppointments] = useState([]);
     //const businessId = useParams();
     const [businessId, setBusinessid] = useState('');
@@ -65,4 +65,4 @@ function ViewAppointments(){
 
 }
 
-export default ViewAppointments;
+export default UserAppointment;

@@ -2,6 +2,9 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const db = require('./appointment-database'); 
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+const { default: userEvent } = require('@testing-library/user-event');
+
 
 router.post('/register', async (req, res) => {
     const { name, email, password, confirmPassword, role } = req.body;
@@ -34,8 +37,11 @@ router.post('/register', async (req, res) => {
                         console.error('Error inserting user into database:', error);
                         return res.status(500).json({ message: 'Error registering user' });
                     }
-                    res.status(201).json({ message: 'User registered successfully', role: role });
+                    const newUserId = results.insertId; // Get the ID of the newly inserted user
+                    const token = jwt.sign({ userId: newUserId, role: role, email: email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+                    res.status(201).json({ message: 'User registered successfully', role: role, token: token});
                 });
+
             } catch (error) {
                 console.error('Error during registration:', error);
                 res.status(500).json({ message: 'Server error' });

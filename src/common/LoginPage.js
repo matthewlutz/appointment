@@ -3,6 +3,7 @@ import {Link, useParams, useLocation, useNavigate} from 'react-router-dom';
 import { useAuth } from './../Authenticator';
 import './styles/LoginPage.css';
 import { jwtDecode } from "jwt-decode";
+import { useUser } from './../userContext';
 
 //import { use } from '../backend/appointment-express/regBackend';
 
@@ -14,6 +15,7 @@ function LoginPage() {
     const location = useLocation();
     const title = location.state?.role === 'service-provider' ? 'Login as Service Provider' : 'Login as User';
     const navigate = useNavigate();
+    const { saveEmail } = useUser();
     const errorMsg = document.getElementById("ErrorMsg");
 
     
@@ -38,11 +40,15 @@ function LoginPage() {
             });
 
             const data = await response.json();
+            console.log(data);
             const decodedToken = jwtDecode(data.token);
             console.log('decoded token: ', decodedToken);
             if(response.ok){
                 console.log('Response ok:', data.message);
                 login(decodedToken.userId, role);
+                saveEmail(email);
+                localStorage.setItem('businessId', decodedToken.businessId);
+                localStorage.setItem('userEmail', email);
                 if (role === 'service-provider') {
                     navigate('/service-providers/ServiceDashBoard'); // brings the service provider to the service provider dashboard
                 } else if (role === 'user') {

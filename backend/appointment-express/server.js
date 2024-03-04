@@ -8,6 +8,8 @@ const loginRouter = require('./backendLogin');
 const UsersListRouter = require('./userListBackend');
 const businessDetailsRouter = require('./businessDetails');
 const bookAppointmentRouter = require('./bookDetails');
+const appointmentRouter = require('./appointments');
+const addAppointmentRouter = require('./addAppointments');
 app.use(express.json());
 app.use(cors());
 
@@ -16,6 +18,9 @@ app.use('/api', loginRouter);
 app.use('/api', UsersListRouter);
 app.use('/api', businessDetailsRouter);
 app.use('/api', bookAppointmentRouter);
+app.use('/api', appointmentRouter);
+app.use('/api', addAppointmentRouter);
+
 
 
 

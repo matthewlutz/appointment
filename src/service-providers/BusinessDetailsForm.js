@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from './../Authenticator';
 //import { Form } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 
 
 function BusinessDetailsForm() {
@@ -13,10 +14,33 @@ function BusinessDetailsForm() {
     const [businessAddress, setBusinessAddress] = useState('');
     const [file, setFile] = useState(''); // For images
     const [businessDescription, setBusinessDescription] = useState('');
-    const [email, setEmail] = useState('');
+    const [qualifications, setQualifications] = useState('');
     const [phone, setPhone] = useState('');
     const [website, setWebsite] = useState('');
+    const { user } = useAuth();
     const navigate = useNavigate();
+    const userEmail = localStorage.getItem('userEmail');
+
+    /*
+    useEffect(() => {
+
+
+        const fetchBusinessDetails = async() => {
+            try{
+                const response = await fetch(`http://localhost:3001/api/get-details/${businessId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+        
+                    }
+                });
+            }catch (error){
+                console.log(error);
+            }
+        }
+    }, [user?.businessId])
+    */
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,12 +53,14 @@ function BusinessDetailsForm() {
             appointmentPrice,
             businessAddress,
             businessDescription,
-            email,
+            qualifications, 
+            email: userEmail,
             phone,
             website,
         };
 
         try{
+            console.log(website);
             const response = await fetch('http://localhost:3001/api/business-form', {
                 method: 'POST',
                 headers: {
@@ -91,18 +117,18 @@ function BusinessDetailsForm() {
             </div>
 
             <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                <input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                <label htmlFor="businessDescription" className="block text-sm font-medium text-gray-700">Relevant Qualifications</label>
+                <textarea id="businessDescription" value={qualifications} onChange={(e) => setQualifications(e.target.value)} required className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
             </div>
 
             <div className="mb-4">
                 <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone</label>
-                <input type="text" pattern="\d{10}" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                <input type="text" pattern="\d{10}" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
             </div>
 
             <div className="mb-4">
                 <label htmlFor="website" className="block text-sm font-medium text-gray-700">Website</label>
-                <input type="text" pattern="https?://.*" id="website" value={website} onChange={(e) => setWebsite(e.target.value)} required className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                <input type="text" pattern="https?://.*" id="website" value={website} onChange={(e) => setWebsite(e.target.value)} className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
             </div>
 
             <div className="mb-4">

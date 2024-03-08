@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import Hours from './serviceHours';
-import './../index.css'; 
-
+import './../css/index.css'; 
+    
 function ServiceDashboard() {
     const [name, setName] = useState('');
     const [appointments, setAppointments] = useState([]);

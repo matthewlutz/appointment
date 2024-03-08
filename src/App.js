@@ -1,18 +1,15 @@
 import React, {useState} from 'react';
-import './index.css';
+import './css/index.css';
 import logo from './common/logo.svg';
-import './Main.css';
+import './css/Main.css';
 import {Route, Link, BrowserRouter, Routes, useNavigate } from 'react-router-dom';
 import LoginPage from './common/LoginPage';
 import HomePage from './common/HomePage';
-import FitnessPage from './FitnessPage';
-import MedicalPage from './MedicalPage';
-import BeautyPage from './BeautyPage';
 import RegistrationPage from './common/RegistrationPage';
 //import UsersList from './admin/UsersList';
 import BusinessDetailsForm from './service-providers/BusinessDetailsForm';
 import ServiceDashboard from './service-providers/serviceDashboard';
-import { AuthProvider, useAuth } from './Authenticator';
+import { AuthProvider, useAuth } from './authentication/Authenticator';
 import LogoutModal from './common/LogoutModal';
 import ServiceSettings from './service-providers/serviceSettings';
 import AppointmentTrends from './service-providers/appointentTrends';
@@ -22,8 +19,8 @@ import UserDashboard from './users/userDashboard';
 import BusinessPage from './common/businesses';
 import ViewBusiness from './common/viewBusiness';
 import Hours from './service-providers/serviceHours';
-import { UserProvider } from './userContext';
-import ViewUserAppointments from './users/ViewUserAppointments'
+import { UserProvider } from './authentication/userContext';
+//import ViewUserAppointments from './users/ViewUserAppointments'
 import AddAppointment from './service-providers/addAppointment';
 
 
@@ -63,11 +60,7 @@ function NavBar() {
                 ) : usersRole === 'user' ? (
                   <Link to="/users/userDashboard" className="text-black hover:text-blue-600 transition duration-300">Dashboard</Link>
                 ) : null}
-                {usersRole === 'service-provider' ? (
-                  {/*<Link to="service-provider/ViewServiceAppointments" className="text-black hover:text-blue-600 transition duration-300">View Appointments</Link>*/}
-                ) : usersRole === 'user' ? (
-                  <Link to="users/ViewUserAppointments" className="text-black hover:text-blue-600 transition duration-300">View Appointments</Link>
-                  ) : null}
+                
                 <Link to="/notifications" className="text-black hover:text-blue-600 transition duration-300">Notifications</Link>
                 <button onClick={() => setIsLogoutModalOpen(true)} className="text-black hover:text-blue-600 transition duration-300">Logout</button>
                 
@@ -99,7 +92,7 @@ function App() {
     <BrowserRouter>
       <NavBar /> {/* Use the NavBar component */}
       <Routes>
-        <Route path="/users/ViewUserAppointments" element={<ViewUserAppointments />} />
+        {/*<Route path="/users/ViewUserAppointments" element={<ViewUserAppointments />} />*/}
         <Route path="/service-providers/serviceHours" element={<Hours />} />
         <Route path="/common/viewBusiness/:businessId" element={<ViewBusiness />} />
         <Route path="/common/businesses" element={<BusinessPage />} />
@@ -114,13 +107,10 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/service-providers/BusinessDetailsForm" element={<BusinessDetailsForm />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/fitness" element={<FitnessPage />} />
-        <Route path="/medical" element={<MedicalPage />} />
-        <Route path="/beauty" element={<BeautyPage />} />
         <Route path="/register" element={<RegistrationPage />} />
         {/*<Route path="/users" element={<UsersList/>}/>*/}
         <Route path="/businesses" element={<BusinessPage />} />
-        <Route path="/users/ViewUserAppointments" element={<ViewUserAppointments/>}/>
+        {/*<Route path="/users/ViewUserAppointments" element={<ViewUserAppointments/>}/>*/}
       </Routes>
     </BrowserRouter>
     </UserProvider>

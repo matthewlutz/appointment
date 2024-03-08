@@ -29,14 +29,7 @@ function ViewBusiness() {
       setAppointmentSlots(slotsData);
      })
      .catch(err => console.error("Failed to fetch appointment slots:", err));
-  }, [businessId]);
-
-  const handleBook = async(details) => {
-    console.log('Booking details:', details);
-    setBookingDetails(details);
-  }
-
-  
+  }, [businessId]);  
 
   // Example services - replace with actual services from your backend
   const services = ['Service'];

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {useAuth} from '../Authenticator';
+import {useAuth} from '../authentication/Authenticator';
 
 function ViewServiceAppointments(){
     const [data, setData] = useState([])

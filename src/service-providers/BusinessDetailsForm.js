@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from './../Authenticator';
+import { useAuth } from '../authentication/Authenticator';
 //import { Form } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 

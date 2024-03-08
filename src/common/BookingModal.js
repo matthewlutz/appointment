@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth } from './../Authenticator';
+import { useAuth } from '../authentication/Authenticator';
 import { useNavigate } from 'react-router-dom';
 
 function BookingModal ({isOpen, onClose, onBook, businessId}){

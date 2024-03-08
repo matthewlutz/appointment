@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
-import { useAuth } from './../Authenticator';
+import { useAuth } from '../authentication/Authenticator';
 import { jwtDecode } from 'jwt-decode';
 
 function AddAppointment(){

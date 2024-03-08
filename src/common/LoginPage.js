@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {Link, useParams, useLocation, useNavigate} from 'react-router-dom';
-import { useAuth } from './../Authenticator';
+import { useAuth } from '../authentication/Authenticator';
 import './styles/LoginPage.css';
 import { jwtDecode } from "jwt-decode";
-import { useUser } from './../userContext';
+import { useUser } from '../authentication/userContext';
 
 //import { use } from '../backend/appointment-express/regBackend';
 

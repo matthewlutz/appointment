@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import {Link, useNavigate, useLocation} from "react-router-dom";
 import './styles/Registration.css';
 import { jwtDecode } from "jwt-decode";
-import { useAuth } from './../Authenticator';
+import { useAuth } from '../authentication/Authenticator';
 import LoginPage from './LoginPage';
-import { useUser } from './../userContext';
+import { useUser } from '../authentication/userContext';
 
 
 function RegistrationPage (){

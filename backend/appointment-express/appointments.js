@@ -1,12 +1,15 @@
+//This file fetches the appointments for a given business
 const db = require('./appointment-database'); 
 const express = require('express');
 const router = express.Router();
 
-router.get('/appointments:businessId', async (req, res) => {
+
+//Defines the GET 
+router.get('/appointments:businessId', async (req, res) => { //gets appointments for the unique businessId
     const { businessId } = req.params();
 
     try{
-        const query = 'SELECT * FROM appointments WHERE businessId = ?';
+        const query = 'SELECT * FROM appointments WHERE businessId = ?'; //db query
         const values = [businessId];
 
         db.query(query, values, (error, results) => {

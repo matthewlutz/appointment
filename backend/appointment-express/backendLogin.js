@@ -1,3 +1,5 @@
+//This file is the backend connection for logging in. it logs the user in based on their role.
+
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
@@ -5,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const db = require('./appointment-database');
 require('dotenv').config({ path: './jsontoken.env'});
 
+// Defines the POST
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
@@ -23,16 +26,16 @@ router.post('/login', async (req, res) => {
             return res.status(404).json({ message: "User not found" });
         }
 
-        const user = usersResults[0]; // Assuming email is unique
+        const user = usersResults[0]; 
 
-        // Password comparison
+        // validates encrypted password
         const validPass = await bcrypt.compare(password, user.password);
         if (!validPass) {
             return res.status(400).json({ message: "Invalid password" });
         }
 
-        // Here, determine if the user is a service provider
-        if (user.role === 'service-provider') {
+        // determines role of the user
+        if (user.role === 'service-provider') { //if role is service-provider, the email and businessId are sent in the jwt token 
             const businessDetailsQuery = 'SELECT id FROM BusinessDetails WHERE email = ?';
             db.query(businessDetailsQuery, [email], (error, businessResults) => {
                 if (error) {
@@ -45,12 +48,10 @@ router.post('/login', async (req, res) => {
                     const token = jwt.sign({ userId: user.id, email, businessId }, process.env.JWT_SECRET, { expiresIn: '1h' });
                     return res.status(200).json({ message: 'Login successful', token: token });
                 } else {
-                    // Handle case where no matching business details are found
                     return res.status(404).json({ message: "No matching business details found" });
                 }
             });
-        } else {
-            // If the user is not a service provider, proceed as normal
+        } else { //role is not a service-provider
             const token = jwt.sign({ userId: user.id, email }, process.env.JWT_SECRET, { expiresIn: '1h' });
             res.status(200).json({ message: 'Login successful', token: token });
         }

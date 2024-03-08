@@ -1,4 +1,4 @@
-//backend server
+//main server for the backend
 
 const express = require('express');
 const cors = require('cors');

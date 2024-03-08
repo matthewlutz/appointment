@@ -25,48 +25,42 @@ function CalenderComponent(){
     
 
     return(
-        <div>
-            <FullCalendar 
-                className="custom-calendar" // Custom class for styling
-                plugins={[dayGridPlugin, timeGridPlugin]}
-                initialView='timeGridWeek'
-                slotMinTime="09:00:00"
-                slotMaxTime="17:00:00"
-                allDaySlot={false}
-                dateClick={handleDateClick}
-                height="auto"
-                headerToolbar={{
-                  center: 'dayGridMonth,timeGridWeek'
-                }}
-                buttonText={{
-                  dayGridMonth: 'Monthly View ',
-                  timeGridWeek: 'Weekly View'
-                }}
-                views={{
-                  dayGridMonth: {
-                    //month view
-                    titleFormat: { year: 'numeric', month: 'long' },
+      <div>
+          <FullCalendar 
+              className="custom-calendar" // Custom class for styling
+              plugins={[dayGridPlugin, timeGridPlugin]} // Plugins for day and time grid views
+              initialView='timeGridWeek' // Default view when the calendar loads
+              slotMinTime="09:00:00" // Minimum time displayed on the calendar
+              slotMaxTime="17:00:00" // Maximum time displayed on the calendar
+              allDaySlot={false} // Disable the all-day slot row
+              dateClick={handleDateClick} // Function to handle date clicks
+              height="auto" // Auto-adjust height based on content
+              headerToolbar={{ // Custom toolbar configuration
+                center: 'dayGridMonth,timeGridWeek' // Buttons for monthly and weekly views in the center
+              }}
+              buttonText={{ // Custom button text
+                dayGridMonth: 'Monthly View ',
+                timeGridWeek: 'Weekly View'
+              }}
+              views={{ // Custom views configuration
+                dayGridMonth: { // Configuration for the month view
+                  titleFormat: { year: 'numeric', month: 'long' },
+                },
+                timeGridWeek: { // Configuration for the week view
+                  slotDuration: '00:30:00', // Duration of time slots
+                  slotLabelFormat: { // Format for the slot labels
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    omitZeroMinute: false,
+                    //meridiem: 'short'
                   },
-                  timeGridWeek: {
-                    // week view
-                    slotDuration: '00:30:00',
-                    slotLabelFormat: {
-                      hour: 'numeric',
-                      minute: '2-digit',
-                      omitZeroMinute: false,
-                      //meridiem: 'short'
-                    },
-                    businessHours: {
-                      // Define business hours for week view
-                      startTime: '07:00', 
-                      endTime: '19:00', 
-                    },
-                    
-                  }
-                }}
-
-            />
-
+                  businessHours: { // Define business hours
+                    startTime: '07:00', 
+                    endTime: '19:00', 
+                  },
+                }
+              }}
+          />
 
             <DayModal isOpen={modalOpen} onClose={closeModal}>
                 <h2>Schedule for {selectedDate}</h2>

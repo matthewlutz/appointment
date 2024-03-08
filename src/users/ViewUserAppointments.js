@@ -1,3 +1,6 @@
+/*
+This Document will show users their appoitnments
+*/
 import React, { useState, useEffect } from 'react';
 //import {useAuth} from '../Authenticator';
 import './ViewUsersApp.css';
@@ -6,7 +9,7 @@ function ViewUserAppointments(){
     const [data, setData] = useState([])
 
 
-    useEffect(() => {
+    useEffect(() => {   //query for the user appoitment data 
         fetch('http://localhost:3001/api/viewUserAppointments')
         .then(res => res.json())
         .then(data => {setData(data);})
@@ -40,7 +43,7 @@ function ViewUserAppointments(){
     }catch (error) {
         console.error('Login failed:', error);
     }*/
-    return(
+    return( // html for the page
         <div>
             <h1>View appointment here</h1>
             <table>

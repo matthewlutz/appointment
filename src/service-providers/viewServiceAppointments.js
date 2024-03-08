@@ -1,3 +1,6 @@
+/*
+This document will display the service providers appointments
+*/
 import React, { useState, useEffect } from 'react';
 import {useAuth} from '../authentication/Authenticator';
 
@@ -6,7 +9,7 @@ function ViewServiceAppointments(){
 
     const {user} = useAuth();
     const userId = user;
-    try {
+    try {                   // querys for the service providers appointment data
         const response = fetch('http://localhost:3001/api/viewServiceAppointments', {
             method: 'POST',
             headers: {
@@ -26,7 +29,7 @@ function ViewServiceAppointments(){
     }catch (error) {
         console.error('Login failed:', error);
     }
-    return(
+    return( // html for the page
         <div>
             <h1>View appointment here</h1>
             <table>

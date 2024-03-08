@@ -1,3 +1,6 @@
+/*
+This is for the login page and will be where the users log in
+*/
 import React, { useState, useEffect } from 'react';
 import {Link, useParams, useLocation, useNavigate} from 'react-router-dom';
 import { useAuth } from '../authentication/Authenticator';

@@ -1,3 +1,6 @@
+/*
+This Document will show all the users in a list for the admins to see
+*/
 import React, { useState, useEffect } from 'react';
 import '../common/styles/UsersListPage.css';
 //import {Link, useParams, useLocation, useNavigate} from 'react-router-dom';
@@ -15,7 +18,7 @@ function UsersList(){
         .catch(err => console.log(err));
     }, [])
 
-    const ClickFunction = async (id, active) => {
+    const ClickFunction = async (id, active) => { 
         // Implement logic to activate/deactivate user with id
         // You can use fetch or any other method to make an API call
         
@@ -59,7 +62,7 @@ function UsersList(){
             setFilteredData(data);
         }
     }, [data, filterRole]);
-    return (
+    return ( // html for the page
         <div >
             <div id="errorMessage">Error</div>
             <select onChange={(e) => setFilterRole(e.target.value)}>

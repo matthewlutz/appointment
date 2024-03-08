@@ -1,3 +1,5 @@
+//This file handles the backend registration logic
+
 const express = require('express');
 const bcrypt = require('bcrypt');
 const db = require('./appointment-database'); 
@@ -5,19 +7,19 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const { default: userEvent } = require('@testing-library/user-event');
 
-
+//This post validates the info sent from the frontend and then adds them into the users table
 router.post('/register', async (req, res) => {
     const { name, email, password, confirmPassword, role } = req.body;
 
-    if (!name || !email || !password || !confirmPassword) {
+    if (!name || !email || !password || !confirmPassword) { //Makes sure form is full
         return res.status(400).json({ message: 'All fields are required' });
     }
 
-    if (password !== confirmPassword) {
+    if (password !== confirmPassword) { //Makes sure passwords match
         return res.status(400).json({ message: 'Passwords do not match' });
     }
 
-    const checkUserQuery = 'SELECT email FROM users WHERE email = ?';
+    const checkUserQuery = 'SELECT email FROM users WHERE email = ?'; //Query to make sure there are no duplicate emails
     db.query(checkUserQuery, [email], async (error, results) => {
         if (error) {
             console.error('Error querying the database:', error);

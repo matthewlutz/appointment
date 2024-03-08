@@ -23,7 +23,7 @@ import { UserProvider } from './authentication/userContext';
 //import ViewUserAppointments from './users/ViewUserAppointments'
 import AddAppointment from './service-providers/addAppointment';
 
-
+//This is the navbar which is shown at all times
 function NavBar() {
   const {user, usersRole, logout} = useAuth();
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
@@ -38,8 +38,6 @@ function NavBar() {
   const handleCancel = async () => {
     setIsLogoutModalOpen(false);
   };
-
-  console.log(`User Role: ${usersRole}`);
 
   return(
     <>
@@ -85,6 +83,7 @@ function NavBar() {
   );
 }
 
+//This method has all of the routing paths for the frontend
 function App() {   
   return (
     <AuthProvider>

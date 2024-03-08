@@ -1,3 +1,5 @@
+//This file takes the booking details sent from the frontend, and validates them and adds them to the appointments table.
+
 const db = require('./appointment-database'); 
 const express = require('express');
 const router = express.Router();
@@ -6,9 +8,9 @@ router.post('/book-appointment', async (req, res) => {
     const { userId, businessId, appointmentStart, appointmentEnd } = req.body;
 
     
-    // Check for overlapping appointments for the business
+    // Check for overlapping appointments on the business end
     const businessOverlapQuery = 'SELECT * FROM Appointments WHERE businessId = ? AND NOT (appointmentEnd <= ? OR appointmentStart >= ?) LIMIT 1';
-    // Check for overlapping appointments for the user
+    // Check for overlapping appointments on the users end
     const userOverlapQuery = 'SELECT * FROM Appointments WHERE userId = ? AND NOT (appointmentEnd <= ? OR appointmentStart >= ?) LIMIT 1';
 
     db.query(businessOverlapQuery, [businessId, appointmentStart, appointmentEnd], (error, businessResults) => {

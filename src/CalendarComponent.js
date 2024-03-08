@@ -5,29 +5,29 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import DayModal from './DayModal';
 import './Cal.css';
 
-
+// Define the Calendar component
 function CalenderComponent(){
     //Use reacts hooks to manage states/events
     const [modalOpen, setModalOpen] = useState(false); //Modal closed by default
     const [selectedDate, setSelectedDate] = useState(null); //No date selected by default
 
     const handleDateClick = (arg) => {
-        console.log("Clicked date:", arg.dateStr); 
-        setSelectedDate(arg.dateStr);
-        setModalOpen(true);
+        console.log("Clicked date:", arg.dateStr); // Log the clicked date
+        setSelectedDate(arg.dateStr); // Update selected date
+        setModalOpen(true); // Show the modal
     }
 
     
     //Function to close the modal
     const closeModal= () => {
-        setModalOpen(false);
+        setModalOpen(false); // Hide the modal
     }
     
 
     return(
         <div>
             <FullCalendar 
-                className="custom-calendar"
+                className="custom-calendar" // Custom class for styling
                 plugins={[dayGridPlugin, timeGridPlugin]}
                 initialView='timeGridWeek'
                 slotMinTime="09:00:00"
@@ -75,4 +75,4 @@ function CalenderComponent(){
     );
 }
 
-export default CalenderComponent;
+export default CalenderComponent; // Export the CalendarComponent for use in other parts of the app
